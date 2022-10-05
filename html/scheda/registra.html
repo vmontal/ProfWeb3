@@ -1,0 +1,299 @@
+﻿<section id="registraWeb" class="panel-transparent" style="display:none">
+
+    <div class="panel-transparent">
+        
+		<header class="col-sm-12 panel">
+            <div class="block-center col-sm-3">
+                <img class="img-rounded img-responsive logoImg" src="img/logo/logoPortofranco2019.png" ng-click="annullaScheda()" />
+                <p class="text-center"><strong>Iscrizioni</strong></p>    
+            </div>
+
+            <div class="block-center col-sm-6">
+                <h3 class="text-center">Modulo Iscrizioni - Portofranco Palermo</h3>
+                <h4 class="text-center">Anno Scolastico: {{as}}</h4>
+                <h5 class="text-center" ng-show="scelta">Sede di: {{luogo}}</h5>
+            </div>
+
+            <div class="block-center col-sm-3">
+                <div class="col-sm-6 center-block">
+                    <button type="button" class="btn btn-primary" ng-show="campiValidati() && scelta" ng-click="salvaScheda()"  ><span class="glyphicon glyphicon-ok"> </span> Salva  </button>
+                </div>
+                <div class="col-sm-6 block-center">
+                    <button type="button" class="btn btn-danger " ng-show="scelta"                    ng-click="annullaScheda()"><span class="glyphicon glyphicon-off"></span> Annulla</button>
+                </div>
+            </div>
+		</header>
+        
+        <div class="container" ng-show="!scelta" >
+            <div class="col-sm-12">  
+
+                <div class="col-sm-12 center-block">
+                    <h3 class="text-center">Sede</h3>
+                </div>
+
+                <div class="col-sm-6 center-block">
+                    <div class="col-sm-12 well">
+                        <img src="../../img/parrocchia_santernesto_palermo.jpg" class="center-block sedeImg" ng-click="sede('E')" />
+                        <h4 class="text-center sedeNome">Via Campolo presso Parrocchia S. Ernesto</h4>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 center-block">
+                    <div class="col-sm-12 well">
+                        <img src="../../img/parrocchia_sanbasilio_palermo.jpg" class="center-block sedeImg" ng-click="sede('B')"/>  <!----> 
+                        <h4 class="text-center sedeNome">Via Paruta presso Parrocchia S. Basilio</h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+               
+        <form name="formRegistra" ng-show="scelta" novalidate>
+
+            <div class="container bodyRegistra">
+
+                <div class="row">
+
+                    <div class="col-sm-12" ng-show="formRegistra" >
+
+                        <div class="col-sm-12 panel panel-body" >
+
+                            <!-- id Studente -->       
+                            <div class="form-group" style="display:none">
+                                <label for="idStudente" class="control-label col-sm-2">id Studente:</label>
+                                <div class="col-sm-5 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" id="idStudente" class="input-md form-control"  name="idStudente" ng-model="idStudente"  readonly="true"  />                               
+                                </div>
+                            </div>
+                            
+                            <!-- Studente -->       
+                            <div class="col-sm-12 panel panel-heading">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="nomeStud" class="col-sm-12">Studente (Cognome Nome)</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                            <input type="text" id="nomeStud" class="input-md form-control"  name="nomeStud" ng-model="nomeStud" placeholder="Cognome Nome" required />                               
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 well">
+
+                                <!-- Istituto Scolastico -->       
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label for="idIstituto" class="col-sm-12">Istituto Scolastico</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-education"></i></span>
+                                            <select class="form-control" id="idIstituto" name="idIstituto" ng-model="idIstituto"  required>
+                                                <option ng-repeat="scuola in elencoIstituti" value={{scuola.CODICEISTITUTO}}>{{scuola.ISTITUTO + " - " + scuola.DESCRIZIONETIPOLOGIAGRADOISTRUZIONESCUOLA}}</option>
+                                            </select> 
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Anno -->       
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="anno" class="col-sm-12">Anno</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-scale"></i></span> <!--<strong>Anno:</strong>-->
+                                            <!--<input type="text"  class="input-md form-control"  id="anno"   name="anno" ng-model="anno"  ng-change="cambia=true" ng-minlength="1" ng-maxlength="1" required />-->
+                                            <select class="form-control" id="anno" name="anno" ng-model="anno" required>
+                                                <option value="1">Primo</option>
+                                                <option value="2">Secondo</option>
+                                                <option value="3">Terzo</option>
+                                                <option value="4">Quarto</option>
+                                                <option value="5">Quinto</option>
+                                            </select>                                                                  
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-12 well">
+                                
+                                <label for="dataNascitaStud" class="col-sm-12">Data e Luogo di Nascita</label>                                
+                                <!-- dataNascita -->   
+                                <div class="col-sm-3">   
+                                    <div class="form-group">
+                                        <!--<label for="dataNascitaStud" class="col-sm-12">Data di Nascita</label>-->
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                            <input type="text"  class="input-md form-control tempo"  id="dataNascitaStud"   name="dataNascitaStud" ng-model="dataNascitaStud" placeholder="data" required  />                                                                
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- luogoNascita -->       
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <!--<label for="luogoNascitaStud" class="col-sm-12">Luogo di Nascita</label>-->
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                            <input type="text"  class="input-md form-control"  id="luogoNascitaStud"   name="luogoNascitaStud" ng-model="luogoNascitaStud" placeholder="luogo" required />                                                                
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 well">
+                                <label  for="emailStud" class="col-sm-12">Riferimenti per comunicazioni</label>
+                                <!-- Email-->
+                                <div class="col-sm-4">                                
+                                    <div class="form-group">    
+                                        <!--<label  for="emailStud" class="col-sm-12">Email</label>-->
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                            <input type="email" class="input-md form-control" id="emailStud" name="emailStud" ng-model="emailStud"   placeholder="email: username@dominio.xx" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Telefono1 -->
+                                <div class="col-sm-4">   
+                                    <div class="form-group">    
+                                        <!--<label  for="tel1Stud" class="col-sm-12">Telefono Studente</label>-->
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                            <input type="text" class="input-md form-control" id="tel1Stud" name="tel1Stud" ng-model="tel1Stud" placeholder="Telefono Studente" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Telefono2 -->       
+                                <div class="col-sm-4">                                   
+                                    <div class="form-group">    
+                                        <!--<label  for="tel2Stud" class="col-sm-12">Telefono Genitore / Altro</label>-->
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                            <input type="text" class="input-md form-control" id="tel2Stud" name="tel2Stud" ng-model="tel2Stud" placeholder="Telefono Genitore / Altro" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-12 well" >
+
+                                <!-- indirizzoResidenza -->
+                                <div class="col-sm-12">
+                                    <div class="form-group">    
+                                        <label  for="indirizzoStud" class="col-sm-12">Indirizzo</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                            <input type="text" class="input-md form-control"   id="indirizzoStud" name="indirizzoStud" ng-model="indirizzoStud" placeholder="Via, Piazza, corso, ..." required/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- comuneResidenza -->     
+                                <div class="col-sm-8">                                  
+                                    <div class="form-group">
+                                        <!--<label for="comuneStud" class="control-label col-sm-2">Comune:</label>-->
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                            <input type="text"  class="input-md form-control"  id="comuneStud"   name="comuneStud" ng-model="comuneStud"  placeholder="Località" required />                              
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- provResidenza -->     
+                                <div class="col-sm-2">                                  
+                                    <div class="form-group">
+                                        <!--<label for="comuneStud" class="control-label col-sm-2">Comune:</label>-->
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                            <input type="text"  class="input-md form-control"  id="provStud"   name="provStud" ng-model="provStud" ng-minlength="2" ng-maxlength="2"  placeholder="PR" required />                              
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- capResidenza -->     
+                                <div class="col-sm-2">                                  
+                                    <div class="form-group">
+                                        <!--<label for="comuneStud" class="control-label col-sm-2">Comune:</label>-->
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                            <input type="text"  class="input-md form-control"  id="capStud"   name="capStud" ng-model="capStud" ng-minlength="5" ng-maxlength="5"  placeholder="CAP: 00000" required />                              
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <!-- Codice Fiscale -->
+                            <div class="col-sm-12 well">       
+                                <div class="col-sm-12">  
+                                    <div class="form-group">    
+                                        <label  for="codiceFiscaleStud" class="col-sm-12">Codice Fiscale</label>
+                                        <div class="col-sm-10 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                            <input type="text" class="input-md form-control" id="codiceFiscaleStud" name="codiceFiscaleStud" ng-model="codiceFiscaleStud" /> <!--ng-minlength="16" ng-maxlength="16"-->
+                                            <span class="input-group-addon">{{verificaCF()}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-12 panel panel-body">
+
+                            <div class="form-group col-sm-12">
+                                <h3>{{dropPrivacy.testoPrivacy.title}}</h3>
+                                <div class="col-sm-12 panel">                                    
+                                    <p>{{dropPrivacy.testoPrivacy.text}}</p>
+                                </div>
+                                <a href="../../dati/Informativa utenti Portofranco PA.pdf" target="_blank" ><i>Leggi tutto...</i></a>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <div class="col-sm-12 panel">                                    
+                                    <p>{{dropPrivacy.trattamento.text}}</p>
+                                    <label for="privacyStud" class="control-label col-sm-6">Do il consenso:</label>
+                                    <div class="col-sm-1 input-group">
+                                        <input type="checkbox" id="privacyStud" class="input-md form-control" name="privacyStud" ng-model="privacyStud" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <div class="col-sm-12 panel">                                    
+                                    <p>{{dropPrivacy.informativa.text}}</p>
+                                    <label for="liberaStud" class="control-label col-sm-6">Do il consenso:</label>
+                                    <div class="col-sm-1 input-group">
+                                        <input type="checkbox" id="liberaStud" class="input-md form-control" name="liberaStud" ng-model="liberaStud" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-12" ng-show="!formRegistra" >
+
+                        <div class="col-sm-12 panel panel-body" >
+                            <br />
+                            <pre class="text-center">Abbiamo inviato una eMail all'indirizzo da te registrato per verificarne la correttezza.</pre>
+                            <hr />
+                            <pre class="text-center">Fai attenzione se per caso la mail non sia stata recapitata nella posta indesiderata (spam)</pre>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>

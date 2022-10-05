@@ -1,0 +1,334 @@
+﻿<section id="master" class="panel-transparent" style="display:none">
+   
+    <header class="container-fluid well">
+        <div class="col-sm-3">
+            <img src="../img/logoPF.png" class="img-rounded img-responsive assLogo" />
+        </div>
+        <div class="col-sm-6">
+            <h1 class="text-center ">Sistema PROF - Pannello di Controllo</h1>
+            <!--<h3 class="text-center" ng-show="!mainMenu">{{ragioneSociale}}</h3>-->
+            <!--<br />-->
+            <h4 id="p_text" class="text-center">---</h4>
+        </div>
+        <div class="col-sm-3 center-block">
+            <img src="../img/logoPF.png" class="img-rounded img-responsive assLogo" />
+        </div>
+    </header>
+
+    <hr />
+
+    <div class="container text-center" ng-show="mainMenu" >
+        <div class="menuSede">
+            <div class="pull-left assBlock">
+                <img id="italia" src="../img/sfondi/analisys.jpg" class="img-responsive img-rounded assImg" ng-click="selectAss('IT')" />
+                <br />
+                <p class="text-center sedeNome">Report Italia</p>
+            </div>
+            <div class="pull-left assBlock" ng-repeat="ass in elencoAss">
+                <img id="ass{{ass.idRS}}" ng-src="{{ass.imgPath}}assId{{ass.idRS}}.jpg?ver={{versione}}" class="img-responsive img-rounded assImg" ng-click="selectAss(ass.idRS)" />
+                <!--<img class="img-responsive img-rounded" ng-show="ass.prof == 'true'" src="../img/icons/iconPROF.png" />-->
+                <!--<br />-->
+                <p class="text-center sedeNome" ng-class="{textRed:ass.prof == 'true'}" ng-click="selectAss(ass.idRS)">{{ass.ragioneSociale}} <br /> {{ass.sedeLegaleIndirizzo}}</p>                                
+            </div>
+            <div class="pull-left assBlock" ng-show="idRuolo == 10">
+                <img id="newAss" src="../img/sfondi/wave.jpg" class="img-responsive img-rounded assImg" ng-click="selectAss('0')" />
+                <br />
+                <p class="text-center sedeNome">Inserisci Nuova Associazione</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" ng-show="!mainMenu">
+        <div class="col-sm-12 panel panel-body">
+
+            <div class="col-sm-12">
+                <ul class="nav navbar-nav">
+                    <!--role="tablist"-->
+                    <li role="presentation" class="barMenuCmd primo active"><a data-target="#anagrafeAss" data-toggle="tab">Anagrafica</a></li> <!--aria-controls="anagrafeProf"   role="tab"-->
+                    <li role="presentation" class="barMenuCmd">       <a data-target="#altroAss"    data-toggle="tab">Altro     </a></li> <!--aria-controls="altroProf"      role="tab"-->
+                    <!--<li role="presentation"               ><a data-target="#orariSede"    data-toggle="tab">Orari</a></li> <!--aria-controls="divPrivacyProf" role="tab" ng-click="scheda('O')"-->
+                    <!--<li role="presentation"               ><a data-target="#offertaSede"  data-toggle="tab">Offerta</a></li> <!--ng-click="scheda('L')"-->
+                </ul>
+                
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-show="cambia && campiValidati()"  ng-click="salvaAss(idRS)" class="barMenuCmd"> <a><span class="glyphicon glyphicon-ok"> </span> Salva</a></li>
+                    <li ng-show="cambia"  ng-click="selectAss(idRS)" class="barMenuCmd"> <a><span class="glyphicon glyphicon-refresh"> </span> Annulla</a></li>
+                    <li ng-show="!cambia" ng-click="mainBack()" class="barMenuCmd"> <a><span class="glyphicon glyphicon-off"> </span> Chiudi</a></li>
+                </ul>
+                <br />
+                <div class="tab-content">
+
+                    <div id="anagrafeAss" class="tab-pane fade in active">
+                        <div class="col-sm-12">
+
+                            <!-- id Sede -->
+                            <div class="form-group" style="display:none">
+                                <label for="idRS" class="control-label col-sm-2">idRS:</label>
+                                <div class="col-sm-5 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" id="idRS" class="input-md form-control" name="idRS" ng-model="idRS" readonly />
+                                </div>
+                            </div>
+
+                            <!-- Ragione Sociale -->
+                            <div class="col-sm-12 panel panel-body">
+                                <label for="ragioneSociale" class="col-sm-12">Ragione Sociale:</label>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-copyright-mark"></i></span>
+                                            <input type="text" id="ragioneSociale" class="input-md form-control" name="ragioneSociale" ng-model="ragioneSociale" ng-disabled="idRuolo == 9" ng-change="cambia=true" placeholder="Ragione Sociale" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <label for="sedeLegaleCF" class="col-sm-12">Codice Fiscale:</label>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-copyright-mark"></i></span>
+                                            <input type="text" id="sedeLegaleCF" class="input-md form-control" name="sedeLegaleCF" ng-model="sedeLegaleCF" ng-disabled="idRuolo == 9" ng-change="cambia=true" placeholder="Codice Fiscale" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Sede Legale-->
+                            <div class="col-sm-12 panel panel-body">
+                                <label for="sedeLegaleIndirizzo" class="col-sm-12">Sede Legale:</label>
+
+                                <!-- INDIRIZZO -->
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                                            <input type="text" class="input-md form-control" id="sedeLegaleIndirizzo" name="sedeLegaleIndirizzo" ng-model="sedeLegaleIndirizzo" ng-disabled="idRuolo == 9" ng-change="cambia=true" placeholder="Indirizzo Sede Legale" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- COMUNE -->
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <!--<label for="luogoSede" class="control-label col-sm-2">Comune:</label>-->
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                                            <input type="text" class="input-md form-control" id="sedeLegaleLuogo" name="sedeLegaleLuogo" ng-model="sedeLegaleLuogo" ng-change="cambia=true" ng-disabled="idRuolo == 9" placeholder="Comune" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- CAP -->
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <!--<label for="capSede" class="control-label col-sm-2">Cap:</label>-->
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                                            <input type="text" class="input-md form-control" id="sedeLegaleCAP" name="sedeLegaleCAP" ng-model="sedeLegaleCAP" ng-change="cambia=true" ng-disabled="idRuolo == 9" placeholder="CAP" ng-minlength="5" ng-maxlength="5" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- PROVINCIA -->
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <!--<label for="provSede" class="control-label col-sm-2">Provincia:</label>-->
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                                            <input type="text" class="input-md form-control" id="sedeLegalePR" name="sedeLegalePR" ng-model="sedeLegalePR" ng-change="cambia=true" ng-disabled="idRuolo == 9" placeholder="PR" ng-minlength="2" ng-maxlength="2" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Dati Amministrativi-->
+                            <div class="col-sm-12 panel panel-body">
+
+                                <!-- Numero Iscrizione -->
+                                <div class="col-sm-6">
+                                    <label for="registroNR" class="col-sm-12">Numero Iscrizione Albo Volontariato:</label>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <div class="col-sm-12 input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-record"></i></span>
+                                                <input type="text" class="input-md form-control" id="registroNR" name="registroNR" ng-model="registroNR" ng-change="cambia=true" ng-disabled="idRuolo == 9" placeholder="Numero Iscrizione Albo" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Data Iscrizione -->
+                                <div class="col-sm-6">
+                                    <label for="registroNR" class="col-sm-12">Data Iscrizione Albo Volontariato:</label>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <div class="col-sm-12 input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                <input type="text" class="input-md form-control tempo" id="registroDataGMA" name="registroDataGMA" ng-model="registroDataGMA" ng-change="cambia=true" ng-disabled="idRuolo == 9" placeholder="Data Iscrizione" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Contatti-->
+                            <div class="col-sm-12 panel panel-body">
+                                <label for="sedeLegaleIndirizzo" class="col-sm-12">Contatti:</label>
+
+                                <!-- TELEFONO 1 -->
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <!--<label for="sedeLegaleTEL1" class="control-label col-sm-3">Telefono 1:</label>-->
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
+                                            <input type="text" class="input-md form-control" id="sedeLegaleTEL1" name="sedeLegaleTEL1" ng-model="sedeLegaleTEL1" placeholder="Numero telefonico principale" ng-change="cambia=true" ng-disabled="idRuolo == 9" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- TELEFONO 2 -->
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <!--<label for="sedeLegaleTEL2" class="control-label col-sm-3">Telefono 2:</label>-->
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                            <input type="text" class="input-md form-control" id="sedeLegaleTEL2" name="sedeLegaleTEL2" ng-model="sedeLegaleTEL2" placeholder="Numero telefonico altro" ng-change="cambia=true" ng-disabled="idRuolo == 9"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- EMAIL -->
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <!--<label for="sedeLegaleEmail" class="control-label col-sm-3">Email:</label>-->
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                            <input type="email" class="input-md form-control" id="sedeLegaleEmail" name="sedeLegaleEmail" ng-model="sedeLegaleEmail" placeholder="indirizzo email" ng-change="cambia=true" ng-disabled="idRuolo == 9" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- PEC -->
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <!--<label for="sedeLegalePEC" class="control-label col-sm-3">PEC:</label>-->
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                            <input type="email" class="input-md form-control" id="sedeLegalePEC" name="sedeLegalePEC" ng-model="sedeLegalePEC" placeholder="indirizzo PEC" ng-change="cambia=true" ng-disabled="idRuolo == 9"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- WEB -->
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <!--<label for="sedeLegalePEC" class="control-label col-sm-3">PEC:</label>-->
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-blackboard"></i></span>
+                                            <input type="text" class="input-md form-control" id="sedeLegaleWEB" name="sedeLegaleWEB" ng-model="sedeLegaleWEB" placeholder="Sito Internet" ng-change="cambia=true" ng-disabled="idRuolo == 9" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="altroAss"    class="tab-pane fade ">
+                        <div class="col-sm-12">
+
+                            <!-- Logo Associazione-->
+                            <div class="col-sm-12 panel panel-body">
+                                <label for="logoAss" class="col-sm-12">Logo:</label>
+
+                                <!-- Logo -->
+                                <div class="col-sm-6" style="display:none">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <!--<span class="input-group-addon"><i class="glyphicon glyphicon-record"></i></span>-->
+                                            <input type="file" class="btn btn-default" id="logoAss" name="logoAss" ng-model="logoAss" ng-change="cambia=true" ng-disabled="idRuolo == 9" required />
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="form-group">
+                                        <!--ng-show="logoAss.length > 4"-->
+                                        <div class="col-sm-6 center-block">
+                                            <input type="button" class="btn btn-primary" id="updLogo" name="updLogo" ng-model="updLogo" ng-disabled="idRuolo == 9" value="Importa" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-upload">
+                                        <!--<h4 class="text-center">Gestione</h4>-->
+                                        <div class="input-group file-upload">
+                                            <label class="input-group-btn">
+                                                <span class="btn btn-light">
+                                                    Seleziona file&hellip; <input type="file" style="display: none;" id="fileUpload" name="fileUpload" accept=".jpeg, .jpg, .png" ng-disabled="idRuolo == 9"> <!--webkitdirectory directory multiple-->
+                                                </span>
+                                            </label>
+                                            <input type="text" id="fileText" name="fileText" class="form-control" readonly>
+                                        </div>
+                                        <p id="errorText"></p>
+                                    </div>
+                                    <hr />
+                                    <div id="btn_loadFile" class="buttons-wrap" style="display: none;">
+                                        <button type="button" id="upload" name="upload" class="btn btn-primary" ng-disabled="idRuolo == 9"><i class="fa fa-arrow-right" aria-hidden="true"></i> Carica File e aggiorna Logo</button>
+                                    </div>
+                                </div>
+
+                                <!-- IMG -->
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 input-group">
+                                            <img ng-src="{{fileLogo}}" class="img-rounded img-responsive assLogo" /> <!--{{imgPath}}assId{{idRS}}.jpg-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Attivo-->
+                            <div class="col-sm-12 panel panel-body">
+                                <!--<label for="logoAss" class="col-sm-12">Sistema Attivo:</label>-->
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <!--<label for="deletedAss" class="control-label col-sm-5" ng-show="!deletedAss">Associazione Operativa:</label>-->
+                                            <label for="prof" class="control-label col-sm-5">Utilizza Sistema PROF:</label>
+                                            <div class="col-sm-1 input-group">
+                                                <input type="checkbox" id="prof" class="input-md form-control" name="prof" ng-model="prof" ng-change="cambia=true" ng-disabled="idRuolo == 9" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <label for="deletedAss" class="control-label col-sm-5" ng-show="!deletedAss">Associazione Operativa:</label>
+                                            <label for="deletedAss" class="control-label col-sm-5" ng-show="deletedAss">Associazione NON Operativa:</label>
+                                            <div class="col-sm-1 input-group">
+                                                <input type="checkbox" id="deletedAss" class="input-md form-control" name="deletedAss" ng-model="deletedAss" ng-change="cambia=true" ng-disabled="idRuolo == 9" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+</section>

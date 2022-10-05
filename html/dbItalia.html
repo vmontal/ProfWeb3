@@ -1,0 +1,338 @@
+﻿<section id="dbItalia" class="panel-transparent" style="display:none">
+   
+    <header class="container-fluid well">
+        <div class="col-sm-3">
+            <img src="../img/logoPF.png" class="img-rounded img-responsive assLogo" />
+        </div>
+        <div class="col-sm-6">
+            <h2 class="text-center ">Sistema PROF - Raccolta dati db-Italia</h2>
+            <!--<h3 class="text-center"></h3>-->
+            <!--<br /> <h4 id="p_text" class="text-center">---</h4>-->
+            <h3 class="text-center">{{ragioneSociale}}</h3>
+        </div>
+        <div class="col-sm-3 center-block">
+            <img src="../img/logoPF.png" class="img-rounded img-responsive assLogo" />
+        </div>
+    </header>
+
+    <hr />
+
+    <div class="container text-center" ng-show="never">
+        <div class="menuSede">
+            <div class="pull-left assBlock">
+                <img id="dbItaliaStud" src="../img/sfondi/accura-strada.jpg" class="img-responsive img-rounded assImg" ng-click="scheda('S')" />
+                <br />
+                <p class="text-center sedeNome"> Report Studenti</p>
+            </div>
+
+            <div class="pull-left assBlock">
+                <img id="dbItaliaMat" src="../img/sfondi/accura-strada.jpg" class="img-responsive img-rounded assImg" ng-click="scheda('M')" />
+                <br />
+                <p class="text-center sedeNome"> Report Materie</p>
+            </div>
+
+            <div class="pull-left assBlock">
+                <img id="dbItaliaProf" src="../img/sfondi/wave.jpg" class="img-responsive img-rounded assImg" ng-click="scheda('P')" />
+                <br />
+                <p class="text-center sedeNome"> Report Professori</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container"  ng-show="mainMenu">
+        <div class="col-sm-12 panel panel-body">
+
+            <div class="col-sm-6">
+                <ul class="nav navbar-nav">
+                    <li ng-class="{activeSez:isSelected('S')}" ng-show="vista('S')" class="barMenu"><a ng-click="scheda('S')"><span class="glyphicon glyphicon-list"></span> Studenti</a></li>
+                    <li ng-class="{activeSez:isSelected('P')}" ng-show="vista('S')" class="barMenu"><a ng-click="scheda('P')"><span class="glyphicon glyphicon-star"></span> Professori</a></li>
+                    <li ng-class="{activeSez:isSelected('M')}" ng-show="vista('S')" class="barMenu"><a ng-click="scheda('M')"><span class="glyphicon glyphicon-book"></span> Materie</a></li>
+                </ul>
+            </div>
+
+            <div class="col-sm-6">
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-show="cambia" ng-click="salvaInfo(idRS)" class="barMenuCmd"> <a><span class="glyphicon glyphicon-ok"> </span> Salva</a></li>
+                    <li ng-show="cambia" ng-click="annullaInfo(idRS)" class="barMenuCmd"> <a><span class="glyphicon glyphicon-refresh"> </span> Annulla</a></li>
+                    <!--<li ng-show="!cambia" ng-click="mainBack()" class="barMenuCmd"> <a><span class="glyphicon glyphicon-off"> </span> Chiudi</a></li>-->
+                </ul>
+                <br />
+            </div>
+
+            <div class="col-sm-12"><h4 class="text-center">{{titoloReport}}</h4></div>
+                
+            <div id="divDBItalia" class="col-sm-12" ng-show="mainInfo">
+
+                <div class="row">
+
+                    <div id="dbStud" ng-show="isSelected('S')">
+
+                        <div id="tabellaStud" class="table-container" ng-show="!schedadbStud">
+
+
+                        </div>
+
+                        <div class="col-sm-12" ng-show="schedadbStud">
+
+                            <!-- id Sede -->
+                            <div class="form-group" style="display:none">
+                                <label for="idRS" class="control-label col-sm-2">idRS:</label>
+                                <div class="col-sm-5 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" id="idRS" class="input-md form-control" name="idRS" ng-model="idRS" readonly />
+                                </div>
+
+                                <label for="idOrigineStud" class="control-label col-sm-2">idOrigineStud:</label>
+                                <div class="col-sm-5 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" id="idOrigineStud" class="input-md form-control" name="idOrigineStud" ng-model="idOrigineStud" readonly />
+                                </div>
+                            </div>
+
+                            <!-- Origine Studente -->
+                            <div class="col-sm-12 panel panel-body">
+                                <label for="origineStud" class="col-sm-3 control-label">Località di Origine Studente:</label>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-copyright-mark"></i></span>
+                                            <input type="text" id="origineStud" class="input-md form-control" name="origineStud" ng-model="origineStud" readonly />
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+
+                            </div>
+
+                            <!-- Anni di corso-->
+                            <div class="col-sm-12 panel panel-body">
+
+                                <!-- PRIMO -->
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="primo" class="col-sm-12">Primo</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                                            <input type="text" class="input-md form-control" id="primo" name="primo" ng-model="primo" ng-change="cambia=true" placeholder="0" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- SECONDO -->
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="secondo" class="col-sm-12">Secondo</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                                            <input type="text" class="input-md form-control" id="secondo" name="secondo" ng-model="secondo" ng-change="cambia=true" placeholder="0" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- TERZO -->
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="terzo" class="col-sm-12">Terzo</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                                            <input type="text" class="input-md form-control" id="terzo" name="terzo" ng-model="terzo" ng-change="cambia=true" placeholder="0" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- QUARTO -->
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="quarto" class="col-sm-12">Quarto</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                                            <input type="text" class="input-md form-control" id="quarto" name="quarto" ng-model="quarto" ng-change="cambia=true" placeholder="0" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- QUINTO -->
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="quinto" class="col-sm-12">Quinto</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                                            <input type="text" class="input-md form-control" id="quinto" name="quinto" ng-model="quinto" ng-change="cambia=true" placeholder="0" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- TOTALE -->
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="totaleStud" class="col-sm-12">Totale</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                                            <input type="text" class="input-md form-control" id="totaleStud" name="totaleStud" ng-model="totaleStud" value=readonly />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="dbProf" ng-show="isSelected('P')">
+
+                        <div id="tabellaProf" class="table-container" ng-show="!schedadbProf">
+
+                        </div>
+
+                        <div class="col-sm-12" ng-show="schedadbProf">
+                            <!-- id Sede -->
+                            <div class="form-group" style="display:none">
+                                <label for="idRS" class="control-label col-sm-2">idRS:</label>
+                                <div class="col-sm-5 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" id="idRS" class="input-md form-control" name="idRS" ng-model="idRS" readonly />
+                                </div>
+
+                                <label for="idTipo" class="control-label col-sm-2">idTipo:</label>
+                                <div class="col-sm-5 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" id="idTipo" class="input-md form-control" name="idTipo" ng-model="idTipo" readonly />
+                                </div>
+                            </div>
+
+                            <!-- Tipo Professore-->
+                            <div class="col-sm-12 panel panel-body">
+
+                                <!-- ATTIVO -->
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="attivo" class="col-sm-12">In Attività</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                                            <input type="text" class="input-md form-control" id="attivo" name="attivo" ng-model="attivo" ng-change="cambia=true" placeholder="0" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- PENSIONE -->
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="pensione" class="col-sm-12">In Pensione</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                                            <input type="text" class="input-md form-control" id="pensione" name="pensione" ng-model="pensione" ng-change="cambia=true" placeholder="0" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- STUDENTE -->
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="studente" class="col-sm-12">Studente</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                                            <input type="text" class="input-md form-control" id="studente" name="studente" ng-model="studente" ng-change="cambia=true" placeholder="0" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- ALTRO -->
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="quarto" class="col-sm-12">Altro</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                                            <input type="text" class="input-md form-control" id="altro" name="altro" ng-model="altro" ng-change="cambia=true" placeholder="0" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- TOTALE -->
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="totaleProf" class="col-sm-12">Totale</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                                            <input type="text" class="input-md form-control" id="totaleProf" name="totaleProf" ng-model="totaleProf" readonly />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div id="dbMat" ng-show="isSelected('M')">
+
+                        <div id="tabellaMat" class="table-container" ng-show="!schedadbMat">
+
+                        </div>
+
+                        <div class="col-sm-12" ng-show="schedadbMat">
+                            <!-- id Sede -->
+                            <div class="form-group" style="display:none">
+                                <label for="idRS" class="control-label col-sm-2">idRS:</label>
+                                <div class="col-sm-5 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" id="idRS" class="input-md form-control" name="idRS" ng-model="idRS" readonly />
+                                </div>
+
+                                <label for="idMateria" class="control-label col-sm-2">idMateria:</label>
+                                <div class="col-sm-5 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" id="idMateria" class="input-md form-control" name="idMateria" ng-model="idMateria" readonly />
+                                </div>
+                            </div>
+
+                            <!-- Tipo Materia-->
+                            <div class="col-sm-12 panel panel-body">
+
+                                <!-- MATERIA -->
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="materia" class="col-sm-12">Materia</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                                            <input type="text" class="input-md form-control" id="materia" name="materia" ng-model="mataeria" readonly />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- GRUPPO -->
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="gruppo" class="col-sm-12">Gruppo</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                                            <input type="text" class="input-md form-control" id="gruppo" name="gruppo" ng-model="gruppo" readonly />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- ORE EROGATE -->
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="oreErogate" class="col-sm-12">Ore Erogate</label>
+                                        <div class="col-sm-12 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                                            <input type="text" class="input-md form-control" id="oreErogate" name="oreErogate" ng-model="oreErogate" ng-change="cambia=true" placeholder="0" required />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<style>
+		    header, h1, h3{
+		        text-align:center;
+                color: lightblue!important;
+		        margin:1% 0%!important;
+                font-family: Calibri, Verdana, 'Times New Roman'  ;
+                font-size:1.3rem;
+            }
+
+			/*.utenteTipo{
+                text-align:center;
+				font-size: 14px!important;
+                font-weight:bold;
+				color: darkblue;
+                background-color: lightgray;
+                margin: 2% 0%;
+                padding: 2%;
+			}*/
+		    .msg {
+                margin: 2%;
+            }
+		    .corpo {
+		        margin: 3% 0%;
+            }
+		        .corpo.link {
+		            font-style:italic;
+                    color: darkblue;
+                }
+
+		    #BodyMail {
+		        font-family: Calibri, Verdana, 'Times New Roman'  ;
+                font-size: 1rem;
+		        margin: 3%;
+                padding: 2%;
+                border:groove ;
+            }
+		</style>
+    </head>
+    
+    <body >
+        <header>
+            <h1>{ragioneSociale}</h1>
+            <h3><i>Sistema PROF</i> - Registrazione {utenteTipo} </h3>
+        </header>
+
+        <div id="BodyMail" class="msg">
+            <div class="corpo">
+                Gent.le <strong>{user},</strong><br />
+                ti sei appena registrato come {utenteTipo} nel Sistema PROF; <br />conferma che <a href="{linkMail}"><span>{email}</span></a> è l'indirizzo eMail sul quale hai chiesto di ricevere tutte le comunicazioni:
+                <a href="{linkMail}"><span>Conferma</span></a>
+            </div>
+            <div class="corpo link">
+                (eventualmente copia ed incolla il seguente link sulla barra degli indirizzi del tuo browser)
+                <br />
+                {linkMail}
+            </div>
+            <div class="corpo">
+                Se non sei stato tu ad effettuare la registrazione oppure non hai idea di cosa stiamo parlando, segnala l'abuso a: <strong>{emailSede}</strong><br />
+                Non rispondere a questo messagio perchè la casella non è abilitata alla ricezione.<br /><br />
+
+                Saluti
+                <br />
+                {ragioneSociale}
+            </div>
+
+        </div>
+
+    </body>
+
+</html>

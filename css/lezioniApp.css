@@ -1,0 +1,304 @@
+* {
+    box-sizing:border-box;
+    font-family: 'Segoe UI', 'Arial Rounded MT', Verdana;
+}
+select {
+    margin-bottom:15px;
+}
+
+.bar .title {
+    color: #ff6a00;
+    font-weight: 700;
+}
+.bar {
+    height:6rem;
+}
+.content-padded {
+    margin:0rem;
+}
+#pages > div {
+    display: none;
+}
+
+    #pages > div.current {
+        display: block;
+    }
+
+.pulsanti .fotocamera, .pulsanti .coordinate {
+    height: 50px;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+}
+
+    .pulsanti .fotocamera .glyphicon-camera {
+        font-size: 50px;
+    }
+
+    .pulsanti .coordinate .glyphicon-map-marker {
+        font-size: 18px;
+    }
+
+.greenBack{
+    background-color: green;
+}
+.redBack{
+    background-color: red;
+    font-weight: bold;
+}
+.yellowBack{
+    background-color: yellow;
+    color: blue;
+}
+.blueBack{
+    background-color: blue;
+    color:yellow;
+}
+.fontBold {
+    font-weight:600;
+}
+.greenText {
+    color:green;
+}
+.redText {
+    color:red;
+}
+
+.topInfo {
+    margin: 4rem auto 0 auto;
+    width: 100%;
+    display: inline-grid;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 3rem!important;
+}
+
+.inputText {
+    border-width : 2px!important;
+    border-radius : 4px!important;
+}
+
+.big {
+    font-size: 2rem;
+}
+th, td {
+    /*width:100rem!important;*/
+    /*text-align:center;*/
+    font-size:1.5rem;
+    padding:0.2rem 0.4rem;
+    /*border:solid;*/
+    /*border-color:lightgray;*/
+}
+
+.scelte > tr td p[id*="S"] {
+    color:green;
+}
+.scelte > tr td p[id*="R"] {
+    color:red;
+}
+.badge {
+    display:normal!important;
+    background-color:lightgray;
+    font-size: 1.8rem;
+    width:6rem;
+    height: 4rem;
+    padding:1rem;
+}
+#storicoTable {
+    border:inset;
+    border-radius: 3rem;
+}
+    #storicoTable tbody tr td {
+        border-bottom:inset;
+        font-size: 1.5rem;
+    }
+
+.testoSX {
+    width: 30%;
+}
+
+.uscita {
+    margin: 2rem auto;
+    padding: 1rem;
+    text-align:center;
+}
+#formCreaProfilo {
+    margin: 2px;
+}
+
+.btnTable {
+    width:100rem;
+    text-align: center;
+}
+.btn-esci{
+    font-size:2rem;
+}
+#noteimg {
+    _display: none;
+    border: 1px solid #CCC;
+}
+
+#msg {
+    _display: none;
+}
+
+.gestione {
+    padding-top: 5px;
+}
+.slide {
+    /*position:relative;
+    background-color: red;*/
+}
+
+.slideTop {
+    position: absolute;
+    top:0;
+    float: left;
+    margin-bottom: 1px;
+    width:100%;
+    /*text-align:center;*/
+}
+.slideBody {
+    /*position: absolute;*/
+    /*top: 3rem;*/
+    /*border: solid 1px;*/
+    /*width: auto;*/
+    /*height:12rem;*/
+}
+.slideBottom {
+    position:absolute;
+    bottom:0.5rem;
+    float: right;
+    width:100%;
+    text-align: center;
+}
+
+.slider {
+    background-color: white!important;
+}
+
+p {
+    font-size: 14px;
+}
+
+h3 {
+    color: white;
+    font-weight: 200;
+    padding-top: 1rem;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 1rem;
+    text-align:center;
+    border-radius: 4rem;
+    min-height:4rem;
+    width:80%;
+    margin: 3rem auto;
+}
+.titleVariazioni {
+    width: 80%;
+    margin: 0 auto;
+}
+#controlCode{
+    border: groove;
+}
+
+#toast {
+    width: 100%;
+    position: absolute;
+    bottom: 20%;
+    display: none;
+    margin: 0 auto;
+}
+
+    #toast .msg {
+        text-align: center;
+        background-color: #818181;
+        width: 70%;
+        margin: 0 auto;
+    }
+
+        #toast .msg p {
+            color: #FFF;
+            font-size: .85em;
+            padding: 10px;
+        }
+
+.table-view {
+    position: relative;
+}
+
+    .table-view img {
+        width: 30px;
+        height: 30px;
+    }
+
+.table-view-cell {
+    padding: 2rem;
+}
+
+.table-view-cell .titolo {
+    font-weight: 700;
+    font-size: 1.2em;
+}
+
+.table-view-cell .datains {
+    float: right;
+    text-align: right;
+}
+
+.table-view-cell .upload {
+    float: left;
+    padding-top: 10px;
+    width: 20%;
+    text-align: center;
+    _height: 100%;
+}
+
+    .table-view-cell .upload p {
+        font-size: .7em;
+        margin-bottom: 3px;
+    }
+
+.table-view-cell .operazioni {
+    float: left;
+    width: 20%;
+    padding-top: 10px;
+    _height: 100%;
+    text-align: center;
+}
+
+.table-view-cell .status {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.home {
+    height: 100%;
+    background: url(img/image.png) no-repeat 0 0;
+}
+
+#mappa {
+    height: 120px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.pulsanti, .table-view-cell .media-body {
+    float: left;
+    width: 100%;
+}
+
+
+/*@media screen and (min-width: 800px) {
+    body {
+        background-color:aliceblue;
+        margin: 0 auto;
+        width: 50rem;
+        height: 50rem;
+        position:relative;
+    }
+}*/

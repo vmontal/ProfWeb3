@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html>
+
+<html lang="it-it">
+
+    <head>
+        <title>Sistema PROF</title>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="expires" content="Mon, 23 Aug 1965 05:04:03 GMT" />
+        <meta http-equiv="cache-control" content="no-store, no-cache, must-revalidate" />
+        
+        <!--<meta name="format-detection" content="telephone=no" />-->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+		<meta name="Description" content="Sistema PROF" />
+
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
+		
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="apple-mobile-web-app-title" content="Sistema PROF" />
+
+        <meta name="theme-color" content="#ffffff">
+      
+        <link rel="manifest" href="/manifest.json?ver=M004">                  
+        <link rel="canonical" href="https://www.valeriomcse.eu" />
+        
+        <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png">
+        
+        <link rel="icon" type="image/png" sizes="192x192"  href="img/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+        
+        <link rel="shortcut icon" href="/img/favicon/profWeb.ico" type="image/x-icon">
+
+        <link rel="stylesheet" href="/js-Api/ratchet-v2.0.2/css/ratchet.min.css" type="text/css" />
+        <link rel="stylesheet" href="/js-Api/ratchet-v2.0.2/css/ratchet-theme-ios.min.css" type="text/css" />
+        <link rel="stylesheet" href="/js-Api/bootstrap/css/bootstrap.min.css" type="text/css" />
+
+        <link rel="stylesheet" href="/css/lezioniApp.min.css?ver=C008" type="text/css" />
+        <!--<link rel="stylesheet" href="/css/lezioniApp.css?ver=C022" type="text/css" />-->
+                
+    </head>
+
+    <body id="schedaLezioniApp" ng-app="lezioniApp" ng-controller="ctrl-lezioniApp" style="display:none">
+
+        <header class="bar bar-nav">
+            <img src="/img/logo/logoPortofranco.png" style="float:left;  height:3rem; margin:1rem;" />
+            <h1 class="title">Portofranco Palermo</h1>
+            <br />
+            <h2 class="title">Anno Scolastico: {{as}}</h2>
+            <img src="/img/icons/traffic_lights_green.png" style="float:right; " ng-show="updateApp" />
+        </header>
+
+        <nav id="barMenu" class="bar bar-tab" ng-show="login">
+            <a class="tab-item"  href="#profilo" data-ignore="push">
+                <span class="glyphicon glyphicon-user"></span>
+                <br />
+                <span class="tab-label">Profilo</span>
+            </a>
+
+            <a class="tab-item active" href="#lezioni" data-ignore="push">
+                <span class="glyphicon glyphicon-calendar"></span>
+                <br />
+                <span class="tab-label">Lezioni</span>
+            </a>
+
+            <a class="tab-item" href="#imposta" data-ignore="push">
+                <span class="glyphicon glyphicon-info-sign"></span>
+                <br />
+                <span class="tab-label">Info</span>
+            </a>
+        </nav>
+
+        <div id="pages" class="content">
+
+            <div id="profilo" class="current">
+                <div class="content-padded">
+                    <div id="divProfilo">
+                        <h3 id="headerProfilo" class="text-center blueBack fontBold">Profilo Utente</h3>
+                        <br />
+                        <form id="formCreaProfilo" class="center-block" ng-show="creaProfilo">
+                            <div class="container">
+                                <div class="col-sm-12">
+                                    <input id="email" type="email" class="inputText" placeholder="email" />
+                                </div>
+                                <br />
+                                <div class="col-sm-12">
+                                    <select id="tipo" class="inputText">
+                                        <option value="">--Tipo Utente--</option>
+                                        <option value="S">Studente</option>
+                                        <option value="D">Docente</option>
+                                        <option value="G">Segreteria</option>
+                                    </select>
+                                </div>
+                                <br />
+                                <!--<div class="col-sm-12">
+                                    <select id="sede" class="inputText">
+                                        <option value="">--Sede--</option>
+                                        <option value="DB_Ernesto">Via Campolo presso S.Ernesto</option>
+                                        <option value="DB_Basilio">Via Paruta presso S.Basilio</option>
+                                    </select>
+                                </div>-->
+                                <br />
+                                <div id="divCreaProfilo" class="container" ng-show="inviaDati">
+                                    <div class="center-block">
+                                        <!--<button id="btnCreaProfilo" class="btn btn-default btn-block"><span class="icon icon-more"></span> Invia dati</button>-->
+                                        <button id="btnCreaProfilo" class="btn btn-default btn-block"><i class="fa fa-arrow-right" aria-hidden="true"></i> Invia dati</button>
+                                    </div>
+                                    <br />
+                                </div>
+                                <div id="divCheckCode" class="container" ng-show="!inviaDati">
+                                    <div class="center-block">
+                                        <input id="txtCheckCode" type="text" class="inputText" placeholder="Codice di controllo" />
+                                    </div>
+                                    <br />
+                                    <button id="btnCheckCode" class="btn btn-success btn-block"><span class="icon icon-next"></span> Conferma Codice</button>
+                                </div>
+
+                                <div class="container" ng-show="mai">
+                                    <div class="center-block">
+                                        <button id="btnAnnullaProfilo" class="btn btn-danger btn-block"><span class="icon icon-back"></span> Annulla</button>
+                                    </div>
+                                    <br />
+                                </div>
+
+                            </div>
+                        </form>
+
+                        <form id="formReadProfilo" class="center-block" ng-show="!creaProfilo">
+                            <section class="container">
+                                <div class="col-sm-12">
+                                    <input id="nomeUser" type="text" class="inputText" readonly />
+                                </div>
+                                <div class="col-sm-12">
+                                    <input id="emailUser" type="email" class="inputText" readonly />
+                                </div>
+                                <div class="col-sm-12">
+                                    <select id="tipoUser" class="inputText" ng-model="tipoUser" ng-disabled="true" >
+                                        <option value="S">Studente</option>
+                                        <option value="D">Docente</option>
+                                        <option value="G">Segreteria</option>
+                                    </select>
+                                </div>
+                                <!--<div class="col-sm-12">
+                                    <select id="sedeUser" class="inputText" ng-disabled="!sempre">
+                                        <option value="DB_Ernesto">Via Campolo presso S.Ernesto</option>
+                                        <option value="DB_Basilio">Via Paruta presso S.Basilio</option>
+                                    </select>
+                                </div>-->
+                                <div class="col-sm-12" ng-show="tipoUser=='S'">
+                                    Istituto: <span><input id="istitutoNome" type="text" class="inputText" readonly /></span>
+                                </div>
+                                <div class="col-sm-12" ng-show="tipoUser=='S'">
+                                    Tipo: <span><input id="istitutoTipo" type="text" class="inputText" readonly /></span>
+                                </div>
+                                <div class="col-sm-12" ng-show="tipoUser=='S'">
+                                    Anno: <span><input id="annoStud" type="text" class="inputText" readonly /></span>
+                                </div>
+
+                                <div class="col-sm-12" ng-show="tipoUser=='D'">
+                                    <ul>
+                                        <li ng-repeat="materia in materiaProf">{{materia}}</li>
+                                    </ul>
+                                </div>
+                                <hr />
+                                <!--<button id="btnEsci" style="float:right;"><span class="glyphicon glyphicon-off"></span></button>-->
+                            </section>
+                        </form>
+                        <p id="msgConsole" class="text-center"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="lezioni">
+                <div class="content-padded">
+                    <h3 class="text-center yellowBack fontBold">Lezioni Prenotate</h3>
+
+                    <div class="center-block container" ng-show="tipoUser=='G'">
+                        <select id="cercaDocente" class="inputText aggiornaLezione" ng-model="cercaDocente" ng-change="aggiornaLezioni('D')">
+                            <option ng-repeat="docente in elencoProfessori" value={{docente.idProfessore}}>{{docente.nomeProf}}</option>
+                        </select>
+                        <select id="cercaStudente" class="inputText aggiornaLezione" ng-model="cercaStudente" ng-change="aggiornaLezioni('S')">
+                            <option ng-repeat="studente in elencoStudenti" value={{studente.idStudente}}>{{studente.nomeStud}}</option>
+                        </select>
+                    </div>
+
+                    <div id="elencoLezioni" class="container">
+                        <!--<ul class="table-view">--><!--</ul>-->
+                        <div class="table-view" ng-repeat="lezione in elencoLezioni">
+                            <div id="offerta{{lezione.idOfferta}}" class="table-view-cell media">
+                                <div class='slider'>
+                                    <!--<div class='slide-group'>-->
+                                    <div class='slide-icon'>
+                                        <div class='media-body'>
+                                        <img class='media-object pull-left' src="/img/icons/ack-OK.png" ng-show="tipoUser=='S'" />
+                                        <img class='media-object pull-left' src="/img/icons/database_edit.png" ng-click="loadArgomenti(lezione.idStudente, lezione.idMateria)" ng-show="!showArgomenti(lezione.idStudente, lezione.idMateria) && tipoUser!=='S'" />
+                                        <img class='media-object pull-left' src="/img/icons/door_out.png" ng-click="closeArgomenti()" ng-show="showArgomenti(lezione.idStudente, lezione.idMateria)" /><span class="redText text-center" ng-show="showArgomenti(lezione.idStudente, lezione.idMateria)"> {{lezione.nomeStud}} - {{lezione.materia}}</span>
+                                        
+                                        </div>
+                                    </div>
+                                    <div class='slide' ng-show="!showArgomenti(lezione.idStudente, lezione.idMateria)">
+                                        <div class='slide-data'>
+                                            <div class='media-body'>
+                                                <p><strong>{{lezione.giorno}}<span> {{lezione.dataOfferta}}</span><span> - {{lezione.ora}}</span></strong></p>
+                                                <p><strong>{{lezione.sede}}</strong></p>
+                                                <p>Professore: <span class='greenText'>{{lezione.nomeProf}} </span> <span class="greenText" ng-show="tipoUser=='G'">- tel: {{lezione.tel1Prof}}</span></p>
+                                                <p>Studente: <span class='redText'>{{lezione.nomeStud}} <span class="redText" ng-show="tipoUser=='G'">- tel: {{lezione.tel1Stud}}</span></span></p>
+                                                <p>Materia: <span>{{lezione.materia}}</span></p>
+                                                <p>{{lezione.istitutoTipo}}</p>
+                                                <p>Anno: <span>{{lezione.anno}}</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='slide' ng-show="showArgomenti(lezione.idStudente, lezione.idMateria) && tipoUser!=='S'">
+                                        <!--<div class='slideTopxx'>
+                                            <p class='redText text-center'> {{lezione.nomeStud}} - {{lezione.materia}}</p>
+                                        </div>-->
+                                        <div class='slideBody'>                                            
+                                            <table id="tableArgomenti">
+                                                <thead>
+                                                    <tr><th class="testoSX">Data</th><th>Argomenti</tr>
+                                                </thead>
+                                                <tbody id="storico">
+                                                    <tr ng-repeat="argomento in elencoArgomenti">
+                                                        <td class='testoSX'>{{argomento.dataOfferta}}</td>
+                                                        <td >{{argomento.argomentoOfferta}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>                                            
+                                        </div>
+                                    </div>
+                                    <!--</div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="imposta">
+                <div class="content-padded">
+                    <div id="credits" class="center-block" ng-show="!logout">
+                        <div class="container">
+                            <p class="text-center topInfo">Versione: {{versione}}</p>
+                            <p class="text-center topInfo">Data: {{dataVersione}}</p>
+                        </div>
+                        <div class="container topInfo center-block" ng-show="updateApp && !logout">
+                            <button id="btn_Update" class="text-center">Aggiorna App <span class="glyphicon glyphicon-cog"></span></button>
+                        </div>
+                        <div class="container topInfo center-block">
+                            <button id="btnEsci" class="text-center">Reset Utente <span class="glyphicon glyphicon-off"></span></button>
+                        </div>
+                    </div>
+                    <div id="logoutForm" class="center-block" ng-show="logout">
+                        <div class="container">
+                            <div class="center-block">
+                                <h3 class="text-center greenBack">Stai uscendo dal Sistema PROF</h3>
+                                <h3 class="text-center redBack">Attenzione!<br /> Utilizza questa funzione solo per riconfigurare l'App con un altro utente / email</h3>
+                            </div>
+                            <!--<div id="btn_ricordami" class="uscita toggle active">
+                                <div class="toggle-handle"></div>
+                            </div>-->
+                            <div class="uscita">
+                                <button id="btn_esciCancella" class="btn btn-success btn-esci"> <span class="icon icon-home"> </span> Conferma </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="js/pwa.js?ver=App000"></script>        
+        <script src="https://use.fontawesome.com/eb4f00209f.js"></script>
+
+        <script src="js/autoexec.js"></script>
+        <script src="js-Api/ratchet-v2.0.2/js/ratchet.min.js"></script>
+        <script src="js-Api/jquery/jquery-2.1.4.min.js"></script>
+        <!--<script src="js-Api/jquery-ui/jquery-ui.min.js"></script>-->
+
+        <script src="js-Api/angular/angular.min.js?ver=1.4.8"></script>
+        <!-- <script src="js-Api/angular/angular-route.min.js"></script> -->
+
+        <!--<script src="js-Api/popper/popper.min.js"></script>-->
+        <script src="js-Api/bootstrap/js/bootstrap.min.js"></script>
+
+        <!--<script src="/js-Api/clientHashing/bcrypt.js"></script>-->
+
+        <script src="js-Api/xml2json/xml2json.min.js"></script>
+        <!-- <script src="js-Api/p5/p5.min.js"></script> -->
+        <script src="js-Api/alasql/alasql.min.js"></script>
+
+        <!--<script src="js/makeFunctionApp.js?ver=App002"></script>-->
+        <script src="js/makeFunctionApp.min.js?ver=App002"></script>
+
+        <script src="js/connectDB.js?ver=App006"></script>
+
+        <!--<script src="js/scheda/lezioniApp.js?ver=App057"></script>-->
+        <script src="js/scheda/lezioniApp.js?ver=App014"></script>
+
+    </body>
+
+</html>

@@ -1,0 +1,271 @@
+﻿<section id="schedaControllo" class="panel-transparent" style="display:none">
+
+    <div class="panel-transparent">
+        
+		<header id="hControllo" class="col-sm-12 panel">
+
+            <div class="block-center col-sm-1">
+                <img class="img-rounded img-responsive logoImg" ng-src="{{path}}assId{{idRS}}.jpg?ver={{versione}}"  ng-click="mainBack()"/>
+                <div class="block-center">
+                    <!--<p class="text-center"><strong>Controllo</strong></p>-->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="glyphicon glyphicon-menu-hamburger"></span>                    
+                    </button>
+                </div>
+                     
+            </div>
+
+            <div id="divMenu" class="col-sm-11">
+                <nav class="navbar navbar-default ">
+                    <div class="container-fluid">
+
+                        <div id="myNavbar" class="collapse navbar-collapse">
+
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown">
+                                    <a class="barMenu" data-toggle="dropdown">Report <span class='caret'></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li ng-class="{activeSez:isSelected('S')}"><a ng-click="repo('S')"><span class="glyphicon glyphicon-user"></span> Studenti</a></li>
+                                        <li ng-class="{activeSez:isSelected('P')}"><a ng-click="repo('P')"><span class="glyphicon glyphicon-education"></span> Docenti</a></li>
+                                        <li ng-class="{activeSez:isSelected('M')}"><a ng-click="repo('M')"><span class="glyphicon glyphicon-book"></span> Materie</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a class="barMenu" data-toggle="dropdown">Analisi <span class='caret'></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li ng-class="{activeSez:isSelected('RM')}"><a ng-click="repo('RM')"><span class="glyphicon glyphicon-road"></span> Materie</a></li>
+                                        <li ng-class="{activeSez:isSelected('RI')}"><a ng-click="repo('RI')"><span class="glyphicon glyphicon-road"></span> Istituti</a></li>
+                                        <li ng-class="{activeSez:isSelected('RO')}"><a ng-click="repo('RO')"><span class="glyphicon glyphicon-road"></span> Nazionalità</a></li>
+                                        <li ng-class="{activeSez:isSelected('RS')}"><a ng-click="repo('RS')"><span class="glyphicon glyphicon-road"></span> Esisgenze</a></li>
+                                        <li ng-class="{activeSez:isSelected('RT')}"><a ng-click="repo('RT')"><span class="glyphicon glyphicon-road"></span> Tipo Docenti</a></li>
+                                        <li ng-class="{activeSez:isSelected('RL')}"><a ng-click="repo('RL')"><span class="glyphicon glyphicon-road"></span> Tipo Didattica</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a class="barMenu" data-toggle="dropdown">Anagrafe <span class='caret'></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li ng-class="{activeSez:isSelected('AD')}"><a ng-click="repo('AD')"><span class="glyphicon glyphicon-road"></span> Docenti</a></li>
+                                        <li ng-class="{activeSez:isSelected('AV')}"><a ng-click="repo('AV')"><span class="glyphicon glyphicon-road"></span> Segreteria</a></li>
+                                        <li ng-class="{activeSez:isSelected('AS')}"><a ng-click="repo('AS')"><span class="glyphicon glyphicon-road"></span> Studenti</a></li>
+                                    </ul>
+                                </li>
+                                <li ng-click="repo('B')" ng-show="idRS == 1" class="barMenu"><a><span class="glyphicon glyphicon-list"></span> Bilancio</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li ng-show="pivot && isSelected('S')" ng-click="reportRegistro()" class="barMenu"><a><span class="glyphicon glyphicon-list"></span> Registro</a></li>
+                                <li ng-show="!pivot && !framePDF" ng-click="reportTotali()" class="barMenu"><a><span class="glyphicon glyphicon-download"></span> XLSX</a></li>
+                                <li ng-show="pivot && !framePDF" ng-click="reportPivot()" class="barMenu"><a><span class="glyphicon glyphicon-download"></span> XLSX</a></li>
+                                <li ng-show="!framePDF" ng-click="reportPDF()" class="barMenu"><a><span class="glyphicon glyphicon-list-alt"></span> PDF</a></li>
+                                <li ng-click="annullaScheda()" class="barMenu"><a><span class="glyphicon glyphicon-off">     </span> Esci</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="panel col-sm-12">
+                            <div class="col-sm-6">
+                                <input class="form-control text-center" type="text" value={{dettaglio}} readonly /> 
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="idSede" class="control-label col-sm-2">Sede: </label>
+                                <div class="input-group text-center col-sm-8">
+                                    <select id="idSede" class="form-control" ng-model="idSede" ng-change="repo(tabMenu)" ng-disabled="pivot">
+                                        <option ng-repeat="sede in elencoSedi" value={{sede.idSede}}>{{sede.descrizioneSede}}</option>
+                                    </select>
+                                </div>
+                            </div>   
+                            <!--<div class="col-sm-4">
+                                <label for="as" class="control-label col-sm-6">Anno Scolastico: </label>
+                                <div class="input-group text-center col-sm-3">
+                                    <input id="as" class="form-control text-center" type="text" value={{as}} readonly />
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                </nav>
+            </div>
+
+		</header>
+                
+        <form id="formControllo">
+
+            <div id="divControllo" class="col-sm-12" ng-show="!pivot && !framePDF">
+
+                <div class="col-sm-12" ng-show="isSelected('S')">
+                    <div class="row">
+
+                        <div id="reportStudenti" class="col-sm-12 panel panel-default table-container table-center">
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-12" ng-show="isSelected('B')">
+                    <div class="row">
+
+                        <div id="reportBilancio" class="col-sm-12 panel panel-default table-container table-center">
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-12" ng-show="isSelected('P')">
+                    <div class="row">
+
+                        <div id="reportProfessori" class="col-sm-12 panel panel-default table-container table-center">
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-12" ng-show="isSelected('M')">
+                    <div class="row">
+
+                        <div id="reportMaterie" class="col-sm-12 panel panel-default table-container table-center">
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-12" ng-show="isSelected('RM')">
+                    <div class="row">
+
+                        <div id="reportStatMaterie" class="col-sm-12 panel panel-default table-container table-center">
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-12" ng-show="isSelected('RI')">
+                    <div class="row">
+
+                        <div id="reportStatIstituti" class="col-sm-12 panel panel-default table-container table-center">
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-12" ng-show="isSelected('RO')">
+                    <div class="row">
+
+                        <div id="reportStatOrigine" class="col-sm-12 panel panel-default table-container table-center">
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-12" ng-show="isSelected('RS')">
+                    <div class="row">
+
+                        <div id="reportStatSpecial" class="col-sm-12 panel panel-default table-container table-center">
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-12" ng-show="isSelected('RT')">
+                    <div class="row">
+
+                        <div id="reportStatTipoProf" class="col-sm-12 panel panel-default table-container table-center">
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-12" ng-show="isSelected('RL')">
+                    <div class="row">
+
+                        <div id="reportStatTipoLezioni" class="col-sm-12 panel panel-default table-container table-center">
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-12" ng-show="isSelected('AD')">
+                    <div class="row">
+
+                        <div id="reportAnagrafeProf" class="col-sm-12 panel panel-default table-container table-center">
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-12" ng-show="isSelected('AV')">
+                    <div class="row">
+
+                        <div id="reportAnagrafeUser" class="col-sm-12 panel panel-default table-container table-center">
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-12" ng-show="isSelected('AS')">
+                    <div class="row">
+
+                        <div id="reportAnagrafeStud" class="col-sm-12 panel panel-default table-container table-center">
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="pivotControllo" class="col-sm-12" ng-show="pivot && !framePDF">
+
+                <div id="registroStudenti" class="col-sm-12 panel panel-default table-container table-center" ng-show="registro">            
+
+                </div>
+
+                <div class="col-sm-12" ng-show="isSelected('S')">
+                    <div class="row">
+
+                        <div id="pivotStudenti" class="col-sm-12 panel panel-default table-container table-center" ng-show="!registro">            
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-12" ng-show="isSelected('P')">
+                    <div class="row">
+
+                        <div id="pivotProfessori" class="col-sm-12 panel panel-default table-container table-center" ng-show="!registro">            
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-12" ng-show="isSelected('M')">
+                    <div class="row">
+
+                        <div id="pivotMaterie" class="col-sm-12 panel panel-default table-container table-center" ng-show="!registro">            
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+ 
+            <div id="frameControllo" class="col-sm-12 panel panel-body" ng-show="framePDF">
+                <iframe id="frameReportPDF" class="col-sm-12 panel-transparent well"></iframe>
+            </div>
+
+        </form>
+
+    </div>
+
+</section>

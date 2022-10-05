@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+  
+<html lang="it-it">
+
+<head>
+    <title>Prof.Web 3.2</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="expires" content="Mon, 23 Aug 1965 05:04:03 GMT" />
+    <meta http-equiv="cache-control" content="no-store, no-cache, must-revalidate" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="Description" content="Sistema PROF" />
+
+    <link type="image/png" rel="shortcut icon" href="img/icons/iconProf.png" />
+
+    <link rel="stylesheet" href="js-Api/jquery-ui/jquery-ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="js-Api/jquery-ui-1.12.1.custom/jquery-ui.min.css" type="text/css" />
+
+    <script src="js-Api/jquery/jquery-2.1.4.min.js"></script>
+    <script src="js-Api/jquery-ui/jquery-ui.min.js"></script>
+    <script src="js-Api/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script src="js-Api/jquery-ui/datepicker-it.js"></script>
+
+    <link rel="stylesheet" href="js-Api/bootstrap/css/bootstrap.min.css?ver=3.4.0" type="text/css" />
+    <link rel="stylesheet" href="js-Api/tabulator/dist/css/tabulator_modern.min.css?ver=3.4.4mo" type="text/css" />
+
+    <!--<link rel="stylesheet" href="css/font-awesome.min.css?ver=4.2.0" type="text/css" />-->
+    <link rel="stylesheet" href="js-API/editor/editor.css?ver=1.1.0" type="text/css" />
+    <!--<link rel="stylesheet" href="css/prof.min.css?ver=B081" type="text/css" />-->
+    <link rel="stylesheet" href="css/prof.css?ver=B124" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css?ver=B024" type="text/css" />
+
+    <script src="js/autoexec.js?ver=002"></script>
+    <!--<script src="https://cdn.by.wonderpush.com/sdk/1.1/wonderpush-loader.min.js" async></script>
+    <script>
+        window.WonderPush = window.WonderPush || [];
+        WonderPush.push(["init", {
+            webKey: "a4c90f60b7db13ff8a32204531e89c8506de81b478f6b53bbd9ff5abbda2a1fe",
+        }]);
+    </script>-->
+
+    <script src="https://use.fontawesome.com/eb4f00209f.js"></script>
+    <script src="js-Api/angular/angular.min.js?ver=1.4.8.eur"></script>
+    <script src="js-Api/angular/angular-route.min.js?ver=1.4.8"></script>
+
+    <script src="js-Api/formatting/accounting.min.js?ver=v0.4.2"></script>
+    <script src="js-Api/popper/popper.min.js"></script>
+    <script src="js-Api/bootstrap/js/bootstrap.min.js?ver=3.4.0"></script>
+    <script src="js-Api/editor/editor.js?ver=1.1.0"></script>
+    <script src="js-Api/cf/codiceFiscale.js?ver=1.0"></script>
+
+    <script src="js-Api/clientHashing/bcrypt.js"></script>
+
+    <script src="js-Api/pdfmake/build/pdfmake.min.js?ver=0.1.33"></script>
+    <script src="js-Api/pdfmake/build/vfs_fonts.js"></script>
+    <script src="js-Api/js-xlsx/xlsx.full.min.js"></script>
+    <script src="js-Api/gChart/loader.js"></script>
+
+    <script src="js-Api/xml2json/xml2json.min.js"></script>
+    <script src="js-Api/tabulator/dist/js/tabulator.min.js?ver=3.4.4"></script>
+
+    <script src="js/parametri.js?ver=B001"></script>
+    <script src="js/default.js?ver=B109"></script>
+
+    <script src="js/makeFunction.js?ver=B207"></script>
+    <script src="js/makePdf.js?ver=B138"></script>
+    <script src="js/makeChart.js?ver=B006"></script>
+    <script src="js/n2l.js?ver=B005"></script>
+
+    <script src="js/home.js?ver=UB091"></script>
+    <script src="js/master.js?ver=UB072"></script>
+    <script src="js/dbItalia.js?ver=UB076"></script>
+    <script src="js/utenti/utentiLogin.js?ver=UB245"></script>
+    <script src="js/utenti/utentiProfilo.js?ver=UB010"></script>
+
+</head>
+
+<body ng-app="PROF-Web" ng-controller="ctrl-main">
+
+    <section class="container-fluid">
+
+        <div class="ng-view">
+
+        </div>
+
+    </section>
+
+    <footer id="homeFooter" class="col-sm-12">
+        <div class="col-sm-4">
+            <p id="iconConnect" class="col-sm-2 footerClass" ng-click="logoutUser()"><span class='glyphicon glyphicon-remove'></span></p>
+            <p id="typeConnect" class="col-sm-5 footerClass">Disconnesso</p>
+            <p class="col-sm-5 footerClass">Anno Scolastico: {{as}}</p>
+        </div>
+        <div class="col-sm-4">
+            <p id="creditText" class="text-center footerClass">Powered by Valerio.JSQL and his bad friendships</p>
+        </div>
+        <div class="col-sm-4">
+            <p id="nameUser" class="col-sm-6 footerClass"></p>
+            <p id="ruoloUser" class="col-sm-6 footerClass"></p>
+        </div>
+    </footer>
+
+
+    <!--Windows Modal-->
+    <div id="dialog">
+
+    </div>
+
+    <div id="dialogInfo">
+        <p id="textInfo" class="text-center"></p>
+    </div>
+
+    <div id="dialogElimina">
+        <div class="col-sm-12 well">
+            <div class="form-group center-block col-sm-12">
+                <p id="nomeDoc"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="dialogReset">
+        <div class="col-sm-12 well">
+            <div class="form-group center-block col-sm-12">
+                <p id="testoReset"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/scheda/anagrafe.js?ver=SB358"></script>
+    <script src="js/scheda/prenota.js?ver=SB168"></script>
+    <!--<script src="js/scheda/lezioni.js?ver=SB004"></script>-->
+    <!--<script src="js/scheda/registra.js?ver=SB001"></script>-->
+    <script src="js/scheda/controllo.js?ver=SB112"></script>
+    <script src="js/scheda/controlloItalia.js?ver=SB120"></script>
+
+    <!--
+    <script>
+        var versione = new Date().getTime();
+
+        var elencoModuli = ["default","makeFunction", "makePDF", "home", "master", "parametri", "n2l", "utenti/utentiLogin", "utenti/utentiProfilo",
+                            "scheda/anagrafe", "scheda/prenota", "scheda/controllo"];
+
+        elencoModuli.forEach(function (modulo, i) {
+            //var myScript = document.createElement('script');
+            //myScript.src = "js/" + modulo + ".js?ver=" + versione;
+            //document.getElementsByTagName('head')[0].appendChild(myScript);
+            $.getScript("js/" + modulo + ".js?ver=" + versione)
+            .then(function (reg, status) { console.log(status)})
+            .fail(function (err, status) {console.log("err: " + err)});
+        });
+
+    </script>
+    -->
+
+</body>
+
+</html>

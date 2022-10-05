@@ -1,0 +1,220 @@
+﻿<!--<body ng-app="WebStudio" ng-controller="ctrl-login">-->
+    <div ng-app="WebStudio" ng-controller="ctrl-login">
+		<header class="container-fluid" ng-show="userLogged" > 
+            <nav class="navbar navbar-inverse">
+                <div id="headerMain"  class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>                    
+                        </button>
+                        <a class="navbar-brand logoMenu" href="#">
+                            <!--<img src="images/CPB.LogoT.png" width="35" class="img-rounded" />-->
+                            <p class="textCentrato">Centro Perizie Bancarie</p>
+                            <!--<var>versione</var>-->
+                        </a>
+                    </div>  
+
+                    <div id="myNavbar" class="collapse navbar-collapse">
+                            
+                        <ul id="main" class="nav navbar-nav">
+                            <!--<li ng-show="userLogged"><a href="#/main">Home</a></li>--> <!--<img src="images/home_page.png" />-->
+                            <li ng-show="userLogged && !deny" ng-disabled="modifica" class="dropdown"><a class="barMenu" data-toggle="dropdown">Clienti<span class='caret'></span></a>
+                                <ul class="dropdown-menu">
+                                    <li ng-show="userLogged"><a href="#/anagrafe">Elenco</a></li> 
+                                    <li ng-show="userLogged && gestione"><a href="#/studio">Stato Lavori</a></li>
+                                </ul>
+                            </li>
+                            <li ng-show="userLogged && (admin || gestione)" ng-disabled="modifica" class="dropdown"><a class="barMenu" data-toggle="dropdown">Analisi<span class='caret'></span></a>
+                                <ul class="dropdown-menu">
+                                    <li ng-show="userLogged && (admin || gestione)"><a href="#/statista">Banche</a></li> 
+                                    <li ng-show="userLogged && (admin || gestione)"><a href="#/territorio">Territorio</a></li>
+                                </ul>
+                            </li>
+                            <li ng-show="false" ng-disabled="modifica" class="dropdown"><a class="barMenu" data-toggle="dropdown">Consulting<span class='caret'></span></a>
+                                <ul class="dropdown-menu">
+                                    <li ng-show="userLogged && (admin)"><a href="#/myBankSVS">myBankSVS</a></li> 
+                                    <li ng-show="userLogged && (admin)"><a href="#/myBank">myBank</a></li>
+                                    <li ng-show="userLogged && (admin || uBank)"><a href="#/uBank">uBank</a></li>
+                                </ul>
+                            </li>
+                            <li ng-show="userLogged" ng-disabled="modifica" class="dropdown"><a class="barMenu" data-toggle="dropdown">Utility<span class='caret'></span></a>
+                                <ul class="dropdown-menu">
+                                    <li ng-show="userLogged"><a href="#/controllo">Controllo TEG</a></li>
+                                    <li ng-show="userLogged"><a href="#/interessi">Rivalutazione Capitale</a></li>
+                                    <li ng-show="userLogged"><a href="#/pianoAmmorta">Ammortamento Capitale</a></li>
+                                </ul>                                                                             
+                            </li>
+                            <li ng-show="userLogged" ng-disabled="modifica" class="dropdown"><a class="barMenu"  data-toggle="dropdown">Tassi<span class='caret'></span></a>
+                                <ul class="dropdown-menu">
+                                    <li ng-show="userLogged"><a href="#/soglia" >Soglia </a></li>                                 
+                                    <li ng-show="userLogged"><a href="#/euribor">Euribor</a></li>
+                                    <li ng-show="userLogged"><a href="#/bot"    >BOT    </a></li>
+                                </ul>
+                            </li>
+                            <li ng-show="userLogged && admin"><a class="barMenu" href="#/parametri">Parametri</a></li>    
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li ng-show="fuori" ng-click="avviaLogin()"><a class="barMenu"><span class="glyphicon glyphicon-log-in"></span> Accedi</a></li>
+                            <li ng-show="!fuori" ng-disabled="modifica" class="dropdown"><a id="a-utente" class="barMenu" data-toggle="dropdown">UserName</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#/utentiProfilo"><span class="glyphicon glyphicon-cog">   </span> Profilo</a></li>
+                                    <li ng-show="admin || gestione"><a href="#/utentiElenco"><span class="glyphicon glyphicon-user">  </span> Gestione Utenti</a></li>
+                                    <li ng-show="admin || gestione"><a href="#/ruoliElenco"> <span class="glyphicon glyphicon-wrench"></span> Gestione Ruoli</a></li>
+                                    <li><a id="a-logout" href="#/utentiLogin">   <span class="glyphicon glyphicon-log-out"></span> Esci </a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavigation">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>                    
+                        </button>
+                        <!--<a class="navbar-brand" href="#"><img src="images/CPB.LogoT.png" class="img-rounded img-responsive" width="20" /></a>-->
+                    </div>
+
+                    <div id="myNavigation" class="collapse navbar-collapse">
+
+                        <ul id="naviga" class="nav navbar-nav">
+                            <li ng-show="userLogged"><a id="navCliente"       class="navMenu"   href="#/anagrafe"></a></li> 
+                            <li ng-show="userLogged"><a id="navBanca"         class="navMenu"   href="#/banca">   </a></li> 
+                            <li ng-show="userLogged"><a id="navRapporto"      class="navMenu"   href="#/rapporto"></a></li>
+                            <li ng-show="userLogged"><a id="navStato"         class="navLavori" href="#studio/">  </a></li>
+                            <li ng-show="userLogged"><a id="navLivello"       class="navLavori"                >  </a></li>
+                            <li ng-show="userLogged"><a id="navStatista"      class="navLavori" href="#statista/"></a></li>
+                            <li ng-show="userLogged"><a id="navStatistaBanca" class="navLavori"                  ></a></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+		</header>
+
+        <div class="ng-view"></div>
+
+        <!--Window Modal jquery-ui -->
+        <div id="dialog"></div>
+
+        <div id="dialogInfo">
+            <p id="textInfo" class="text-center"></p>
+        </div>
+
+        <div id="dialogElimina">
+            <div class="col-sm-12 well">
+                <div class="form-group center-block col-sm-12">
+                    <p id="nomeDoc"></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="dialogReset">
+            <div class="col-sm-12 well">
+                <div class="form-group center-block col-sm-12">
+                    <p id="testoReset"></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="dialogRata">
+            <header class="panel panel-heading" style="display:none">    
+                <h3>Modifica Valori Rata</h3>
+            </header>
+            <div style="display:none">
+                <div class="panel col-sm-12">
+                    <div class="form-group">
+                        <div class="col-sm-6 input-group">
+                            <input type="text" class="input-md euro form-control" id="rataID" name="rataID" readonly="true" />
+                        </div>
+                    </div>
+                </div>
+                <div class="panel col-sm-12">
+                    <div class="form-group">
+                        <div class="col-sm-6 input-group">
+                            <input type="text" class="input-md euro form-control" id="ID_Rapporto" name="ID_Rapporto" readonly="true" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-transparent">
+                <div class="panel col-sm-12">
+                    <div class="form-group col-sm-6">
+                        <label for="capRata" class="control-label col-sm-4">Capitale:</label>
+                        <div class="col-sm-7 input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-eur"></i></span>
+                            <input type="text" class="input-md euro form-control" id="capRata" name="capRata" />
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="moratoriaCap" class="control-label col-sm-4">Moratoria:</label>
+                        <div class="col-sm-1 input-group">
+                            <input type="checkbox" class="input-md form-control" id="moratoriaCap" name="moratoriaCap" />
+                        </div>
+                    </div>
+                </div>
+                <div class="panel col-sm-12">
+                    <div class="form-group col-sm-6">
+                        <label for="intRata" class="control-label col-sm-4">Interessi:</label>
+                        <div class="col-sm-7 input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-eur"></i></span>
+                            <input type="text" class="input-md euro form-control" id="intRata" name="intRata" />
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="moratoriaInt" class="control-label col-sm-4">Moratoria:</label>
+                        <div class="col-sm-1 input-group">
+                            <input type="checkbox" class="input-md form-control" id="moratoriaInt" name="moratoriaInt" />
+                        </div>
+                    </div>
+                </div>
+                <div class="panel col-sm-12">
+                    <div class="form-group col-sm-6">
+                        <label for="speseRata" class="control-label col-sm-4">Spese:</label>
+                        <div class="col-sm-7 input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-eur"></i></span>
+                            <input type="text" class="input-md euro form-control" id="speseRata" name="speseRata" readonly="true" />
+                        </div>
+                    </div>
+                </div>
+                <div class="panel col-sm-12">
+                    <div class="form-group col-sm-6">
+                        <label for="moraRata" class="control-label col-sm-4">Mora:</label>
+                        <div class="col-sm-7 input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-eur"></i></span>
+                            <input type="text" class="input-md euro form-control" id="moraRata" name="moraRata" />
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="moraRataManuale" class="control-label col-sm-4">Manuale:</label>
+                        <div class="col-sm-1 input-group">
+                            <input type="checkbox" class="input-md form-control" id="moraRataManuale" name="moraRataManuale" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="panel-transparent">                                
+                <div class="col-sm-6">
+                    <p class="text-center">
+                        <button id="btn_updateRata" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-cog"></span> Aggiorna
+                        </button>
+                    </p>
+                </div>
+
+                <div class="col-sm-6">
+                    <p class="text-center" >
+                        <button id="btn_cancelRata" class="btn btn-danger" >
+                            <span class="glyphicon glyphicon-remove"></span> Annulla
+                        </button>
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </div>
+<!--</body>-->

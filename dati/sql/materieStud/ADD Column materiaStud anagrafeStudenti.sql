@@ -1,0 +1,1 @@
+alter table pf_anagrafestudenti add materiaStud varchar(20) 

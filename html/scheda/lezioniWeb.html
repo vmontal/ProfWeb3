@@ -1,0 +1,60 @@
+﻿<section id="schedaLezioniWeb" class="panel-transparent" style="display:none">
+
+    <div class="panel-transparent">
+                      
+		<header id="hLezioni" class="col-sm-12 panel" >
+
+            <div class="block-center col-sm-1">
+                <img class="img-rounded img-responsive logoImg" src="img/logo/logoPortofranco.png" ng-click="scelta=false" />
+                <p class="text-center"><strong>Lezioni Prenotate</strong></p>    
+            </div>
+
+            <div class="block-center col-sm-10">
+                <h3 class="text-center">Portofranco Palermo</h3>
+                <h4 class="text-center">Anno Scolastico: {{as}}</h4>
+                <h5 class="text-center" ng-show="scelta">Sede di: {{luogo}}</h5>
+            </div>
+
+            <div class="block-center col-sm-1 noSmart">
+                <img class="img-rounded img-responsive logoImg" src="img/icons/home_page.png"/> 
+            </div>
+
+		</header>
+        
+        <div class="container" ng-show="!scelta" >
+            <div class="col-sm-12">  
+
+                <div class="col-sm-12 center-block">
+                    <h3 class="text-center">Sede</h3>
+                </div>
+
+                <div class="col-sm-6 center-block">
+                    <div class="col-sm-12 well">
+                        <img src="../../img/parrocchia_santernesto_palermo.jpg" class="center-block sedeImg" ng-click="sede('E')" />
+                        <h4 class="text-center sedeNome">Via Campolo presso Parrocchia S. Ernesto</h4>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 center-block">
+                    <div class="col-sm-12 well">
+                        <img src="../../img/parrocchia_sanbasilio_palermo.jpg" class="center-block sedeImg" ng-click="sede('B')" />  <!-- --> 
+                        <h4 class="text-center sedeNome">Via Paruta presso Parrocchia S. Basilio</h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+                                           
+        <div class="container" ng-show="scelta">
+
+            <div class="col-sm-12 panel panel-default table-container">            
+                <div id="tabellaLezioni" class="table-center">
+
+                </div>
+            </div>                    
+
+        </div>
+
+    </div>
+
+</section>

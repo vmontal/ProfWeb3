@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+
+<html lang="it-it">
+
+    <head>
+        <title>Sistema PROF</title>
+
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1"/>-->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="expires" content="Mon, 23 Aug 1965 05:04:03 GMT" />
+        <meta http-equiv="cache-control" content="no-store, no-cache, must-revalidate" />
+
+        <link type="image/png" rel="shortcut icon" href="/img/logo/logoPortofranco.png" />
+
+        <link rel="stylesheet" href="/js-Api/ratchet-v2.0.2/css/ratchet.min.css" type="text/css" />
+        <link rel="stylesheet" href="/js-Api/ratchet-v2.0.2/css/ratchet-theme-ios.css" type="text/css" />
+        <link rel="stylesheet" href="/js-Api/bootstrap/css/bootstrap.min.css" type="text/css" />
+
+        <link rel="stylesheet" href="/css/lezioniApp.css?ver=C002" type="text/css" />
+
+        <script src="https://use.fontawesome.com/eb4f00209f.js"></script>
+
+        <script src="/js/autoexec.js"></script>
+        <script src="/js-Api/ratchet-v2.0.2/js/ratchet.min.js"></script>
+        <script src="/js-Api/jquery/jquery-2.1.4.min.js"></script>
+        <script src="/js-Api/jquery-ui/jquery-ui.min.js"></script>
+
+        <script src="/js-Api/angular/angular.min.js?ver=1.4.8"></script>
+        <script src="/js-Api/angular/angular-route.min.js"></script>
+
+        <script src="/js-Api/popper/popper.min.js"></script>
+        <script src="/js-Api/bootstrap/js/bootstrap.min.js"></script>
+
+        <!--<script src="/js-Api/clientHashing/bcrypt.js"></script>-->
+
+        <script src="/js-Api/xml2json/xml2json.min.js"></script>
+        <script src="/js-Api/p5/p5.min.js"></script>
+        <script src="/js-Api/alasql/alasql.min.js"></script>
+
+        <script src="/js/makeFunction.js?ver=A020"></script>
+        <script src="/js/connectDB.js?ver=012"></script>
+
+        <script src="/js/scheda/lezioniApp.js?ver=S057"></script>
+
+    </head>
+
+    <body id="schedaLezioniApp" ng-app="lezioniApp" ng-controller="ctrl-lezioniApp" style="display:none">
+        <!-- -->
+        <header class="bar bar-nav">
+            <img src="/img/logo/logoPortofranco.png" style="float:left;  height:3rem; margin:1rem;" />
+            <h1 class="title">Portofranco Palermo</h1>
+            <br />
+            <h2 class="title">Anno Scolastico: {{as}}</h2>
+            <!--<h5 class="text-center" ng-show="scelta">Sede di: {{luogo}}</h5>-->
+            <button id="btnEsci" style="float:right;"><span class="glyphicon glyphicon-off"></span></button>
+        </header>
+
+        <nav id="barMenu" class="bar bar-tab" ng-show="login">
+            <a class="tab-item active" href="#profilo" data-ignore="push">
+                <span class="glyphicon glyphicon-user"></span>
+                <br />
+                <span class="tab-label">Profilo</span>
+            </a>
+
+            <a class="tab-item" href="#lezioni" data-ignore="push">
+                <span class="glyphicon glyphicon-calendar"></span>
+                <br />
+                <span class="tab-label">Lezioni</span>
+            </a>
+        </nav>
+
+        <div id="pages" class="content">
+
+            <div id="profilo" class="current">
+                <div class="content-padded">
+                    <div id="divProfilo">
+                        <h3 id="headerProfilo" class="text-center blueBack fontBold">Profilo Utente</h3>
+                        <br />
+                        <form id="formCreaProfilo" class="center-block" ng-show="creaProfilo">
+                            <div class="container">
+                                <div class="col-sm-12">
+                                    <input id="email" type="email" class="inputText" placeholder="email" />
+                                </div>
+                                <br />
+                                <div class="col-sm-12">
+                                    <select id="tipo" class="inputText">
+                                        <option value="">--Tipo Utente--</option>
+                                        <option value="S">Studente</option>
+                                        <option value="D">Docente</option>
+                                        <option value="G">Segreteria</option>
+                                    </select>
+                                </div>
+                                <br />
+                                <!--<div class="col-sm-12">
+                                    <select id="sede" class="inputText">
+                                        <option value="">--Sede--</option>
+                                        <option value="DB_Ernesto">Via Campolo presso S.Ernesto</option>
+                                        <option value="DB_Basilio">Via Paruta presso S.Basilio</option>
+                                    </select>
+                                </div>-->
+                                <br />
+                                <div id="divCreaProfilo" class="container" ng-show="inviaDati">
+                                    <div class="center-block">
+                                        <!--<button id="btnCreaProfilo" class="btn btn-default btn-block"><span class="icon icon-more"></span> Invia dati</button>-->
+                                        <button id="btnCreaProfilo" class="btn btn-default btn-block"><i class="fa fa-arrow-right" aria-hidden="true"></i> Invia dati</button>
+                                    </div>
+                                    <br />
+                                </div>
+                                <div id="divCheckCode" class="container" ng-show="!inviaDati">
+                                    <div class="center-block">
+                                        <input id="txtCheckCode" type="text" class="inputText" placeholder="Codice di controllo" />
+                                    </div>
+                                    <br />
+                                    <button id="btnCheckCode" class="btn btn-success btn-block"><span class="icon icon-next"></span> Conferma Codice</button>
+                                </div>
+
+                                <div class="container" ng-show="mai">
+                                    <div class="center-block">
+                                        <button id="btnAnnullaProfilo" class="btn btn-danger btn-block"><span class="icon icon-back"></span> Annulla</button>
+                                    </div>
+                                    <br />
+                                </div>
+
+                            </div>
+                        </form>
+
+                        <form id="formReadProfilo" class="center-block" ng-show="!creaProfilo">
+
+                            <section class="container">
+                                <div class="col-sm-12">
+                                    <input id="nomeUser" type="text" class="inputText" readonly />
+                                </div>
+                                <div class="col-sm-12">
+                                    <input id="emailUser" type="email" class="inputText" readonly />
+                                </div>
+                                <div class="col-sm-12">
+                                    <select id="tipoUser" class="inputText" ng-model="tipoUser" ng-disabled="!sempre" >
+                                        <option value="S">Studente</option>
+                                        <option value="D">Docente</option>
+                                        <option value="G">Segreteria</option>
+                                    </select>
+                                </div>
+                                <!--<div class="col-sm-12">
+                                    <select id="sedeUser" class="inputText" ng-disabled="!sempre">
+                                        <option value="DB_Ernesto">Via Campolo presso S.Ernesto</option>
+                                        <option value="DB_Basilio">Via Paruta presso S.Basilio</option>
+                                    </select>
+                                </div>-->
+                                <div class="col-sm-12" ng-show="studente">
+                                    <input id="istituto" type="text" class="inputText" readonly />
+                                </div>
+                                <div class="col-sm-12" ng-show="studente">
+                                    <input id="anno" type="text" class="inputText" readonly />
+                                </div>
+                                <div class="col-sm-12" ng-show="docente">
+                                    <input id="materie" type="text" class="inputText" readonly />
+                                </div>
+                                <div class="col-sm-12" ng-show="docente">
+                                    <input id="anni" type="text" class="inputText" readonly />
+                                </div>
+                            </section>
+
+                            <section id="logoutForm" class="center-block" ng-show="logout">
+                                <div class="container">
+                                    <div class="center-block">
+                                        <h3 class="text-center redBack">Stai uscendo dal Sistema PROF</h3>
+                                        <h5 class="text-center">Mi posso ricordare di te?</h5>
+                                    </div>
+                                    <div id="btn_ricordami" class="uscita toggle active">
+                                        <div class="toggle-handle"></div>
+                                    </div>
+                                    <div class="uscita">
+                                        <button id="btn_esciRicorda"  class="btn btn-success btn_esci" ng-show="ricordami" ><span class="icon icon-home" ></span> Esci e Ricorda</button>
+                                        <button id="btn_esciCancella" class="btn btn-danger  btn_esci" ng-show="!ricordami"><span class="icon icon-close"></span> Esci e Dimentica</button>
+                                    </div>
+                                </div>
+                            </section>
+
+                        </form>
+                        <p id="msgConsole" class="text-center"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="lezioni">
+                <div class="content-padded">
+                    <h3 class="text-center yellowBack fontBold">Lezioni Prenotate</h3>
+                    <div class="center-block container" ng-show="tipoUser=='G'">
+                        <select id="cercaDocente" class="inputText aggiornaLezione" ng-model="cercaDocente" ng-change="aggiornaLezioni('D')">
+                            <option ng-repeat="docente in elencoProfessori" value={{docente.idProfessore}}>{{docente.nomeProf}}</option>
+                        </select>
+                        <select id="cercaStudente" class="inputText aggiornaLezione" ng-model="cercaStudente" ng-change="aggiornaLezioni('S')">
+                            <option ng-repeat="studente in elencoStudenti" value={{studente.idStudente}}>{{studente.nomeStud}}</option>
+                        </select>
+                    </div>
+                    <!--<p>The input field has changed times {{cercaStudente}}.{{cercaDocente}}</p>-->
+                    <div id="elencoLezioni" class="container">
+                        <ul class="table-view">
+
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </body>
+
+</html>

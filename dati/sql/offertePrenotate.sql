@@ -1,0 +1,2 @@
+select idsede, dataOfferta, idProfessore, idOrario, count(*) from pf_pianoOfferteVista  WHERE idstatusofferta = 2 and dataOfferta > GETDATE() GROUP by idsede, dataOfferta, idProfessore, idOrario
+--select * from pf_pianoOfferte

@@ -1,0 +1,1 @@
+alter table pf_anagrafestudenti add regolamentoStud bit not null default 0

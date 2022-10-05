@@ -1,0 +1,86 @@
+﻿<section id="uBank" class="panel-transparent">
+
+    <div class="div_tabella titolo panel-transparent panel-heading row">
+
+        <div class="panel-transparent col-sm-6">           
+            <p id="header_uBank" class="text-center" >uBank</p>
+        </div>
+
+        <div class="panel-transparent col-sm-6">
+            <p id="header_tipoAnalisi" class="text-center">Analisi Qualità del Credito</p>
+        </div>
+
+    </div>
+
+    <div  class="div_tabella row">
+
+        <div class="panel panel-body">
+
+            <form class="form-horizontal" ng-show="elenco_uBank">
+  
+                <div id="tabella_uBank" class="well"></div>
+
+            </form>
+            
+            <form class="form-horizontal" ng-show="elenco_uBank">
+                <div id="PieChart" class="row panel well">                    
+                    <div id="PieRapporti"   class="col-sm-3"></div>
+                    <div id="PieRicavo"     class="col-sm-3"></div>
+                    <div id="PieUtilizzato" class="col-sm-3"></div>
+                    <div id="PieAccordato"  class="col-sm-3"></div>
+                </div>
+
+                <div id="bolle" class="col-sm-12 panel well">
+
+                </div>
+
+                <!-- Apre Window Modal per attesa elaborazione -->
+                <div id="runModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <div class="modal-content">
+                            <header class="modal-header bg-info">
+                                <h3 id="txtModal" class="text-center"></h3>
+                            </header>
+
+                            <section class="center-block">
+                                <p class="text-center"><img id="imgModal" src="images/CPB.LogoT.png" class="img-rounded gif" /></p>
+                            </section>
+
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+           
+            <!-- Footer Scheda Banca -->
+            <form class="form-horizontal" >
+
+                <footer class="row">
+                    <hr />
+                    <div class="form-group col-sm-6 center-block">
+                        <p class="text-center" >
+                            <button id="btn_chiudiSchedaBanca" class="btn btn-danger" ng-click="chiudi()">
+                                <span class="glyphicon glyphicon-remove"></span> Chiudi
+                            </button>
+                        </p>
+                    </div>
+
+                    <div class="form-group col-sm-6 center-block">
+                        <p class="text-center" >
+                            <button id="btn_print" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-remove"></span> Stampa
+                            </button>
+                        </p>
+                    </div>
+
+                </footer>
+
+            </form>
+                           
+        </div>
+
+    </div>
+
+
+</section>

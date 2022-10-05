@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<style>
+		    header, h1, h2, h3{
+		        text-align:center;
+                color: lightblue!important;
+		        margin:1% 0%!important;
+                font-family: Calibri, Verdana, 'Times New Roman'  ;
+                /*font-size:1.3rem;*/
+            }
+
+			/*.utenteTipo{
+                text-align:center;
+				font-size: 14px!important;
+                font-weight:bold;
+				color: darkblue;
+                background-color: lightgray;
+                margin: 2% 0%;
+                padding: 2%;
+			}*/
+		    .msg {
+                margin: 2%;
+            }
+		    .corpo {
+		        margin: 3% 0%;
+            }
+		        .corpo.link {
+		            font-style:italic;
+                    color: darkblue;
+                }
+
+		    #BodyMail {
+		        font-family: Calibri, Verdana, 'Times New Roman'  ;
+                font-size: 1rem;
+		        margin: 3%;
+                padding: 2%;
+                border:groove ;
+            }
+		</style>
+    </head>
+    
+    <body >
+        <header>
+            <!--<h2>Portofranco Palermo</h2>-->
+            <h2>Sistema PROF</h2>
+            <h3><i>Verifica Codice di Controllo</i></h3>
+        </header>
+
+        <div id="BodyMail" class="msg">
+            <div class="corpo">
+                Gent.le <strong>{tipoUser},</strong><br />
+                hai richiesto la verifica per l'accesso alle lezioni con l'APP ProfWeb;
+                <br /><br />
+                La tua email è {email}; <br />
+                <br />
+                Il Codice di controllo da inserire nel form di registrzione è: <strong>{checkCode}</strong> .
+            </div>
+
+            <div class="corpo">
+                Se non sei stato tu ad effettuare la registrazione oppure non hai idea di cosa stiamo parlando, segnala l'abuso a: <strong>valerio.net@valeriomcse.eu</strong><br />
+                Non rispondere a questo messagio perchè la casella non è abilitata alla ricezione.<br /><br />
+
+                Saluti
+            </div>
+
+            <strong>Sistema PROF</strong>
+        </div>
+
+    </body>
+
+</html>

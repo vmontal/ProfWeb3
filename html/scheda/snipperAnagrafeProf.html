@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div id="divOffertaProf" role="tabpanel" class="panel panel-body tab-pane fade">
+
+        <div class="col-sm-12 table-responsive" ng-show="tabellaCassa && !frameRicevuta">
+
+            <table class="table table-bordered">
+                <thead style="background-color:darkgray">
+                    <tr>
+                        <th style="text-align:center">Data</th>
+                        <th style="text-align:center">Causale</th>
+                        <th style="text-align:center">Importo</th>
+                        <th style="text-align:center"><input type="button" class="btn btn-positive" value="Nuova" ng-click="ricevutaStud_New()" /></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background-color:lightblue" ng-repeat="offerta in elencoCassa | filter:{idUtente:idStudente}:true">
+                        <td style="text-align:center">{{offerta.dataOfferta}}</td>
+                        <td>{{offerta.causale}}</td>
+                        <td style="text-align:right">{{offerta.importo | currency: "€ " : 2}}</td>
+                        <td style="text-align:center"><input type="button" id="ricevuta{{offerta.id}}" class="btn btn-default" value="Ricevuta" ng-click="ricevutaStud_On(offerta.id)" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="well" ng-show="!tabellaCassa && !frameRicevuta">
+            <div class="form-group" ng-show="!nuovaRicevuta">
+                <label for="idRicevuta" class="col-sm-2">Numero Ricevuta:</label>
+                <div class="col-sm-2 input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span>
+                    <input type="text" class="input-md form-control" id="idRicevuta" name="idRicevuta" ng-model="idRicevuta" ng-disabled="true" readonly />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="anno" class="col-sm-2">Data Ricevuta:</label>
+                <div class="col-sm-3 input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    <input type="text" class="input-md form-control tempo" id="dataRicevuta" name="dataRicevuta" ng-model="dataRicevuta" ng-change="cambiaRicevuta=true" ng-disabled="deletedStud || deletedRic" placeholder="data" readonly required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nominativoSoggetto" class="col-sm-2">Nominativo:</label>
+                <div class="col-sm-5 input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                    <input type="text" class="input-md form-control" id="nominativoSoggetto" name="nominativoSoggetto" ng-model="nominativoSoggetto" ng-change="cambiaRicevuta=true" ng-disabled="deletedStud || deletedRic" placeholder="Nominativo del soggetto che effettua il versamento" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="codiceFiscaleSoggetto" class="col-sm-2">Codice Fiscale:</label>
+                <div class="col-sm-8 input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+                    <input type="text" class="input-md form-control" id="codiceFiscaleSoggetto" name="codiceFiscaleSoggetto" ng-model="codiceFiscaleSoggetto" ng-change="cambiaRicevuta=true" ng-disabled="deletedStud || deletedRic" placeholder="Codice Fiscale del soggetto che effettua il versamento" required />
+                    <span class="input-group-addon">{{verificaCF('Soggetto')}}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="importoRicevuta" class="col-sm-2">Importo:</label>
+                <div class="col-sm-3 input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-eur"></i></span>
+                    <input type="text" class="input-md form-control importo" id="importoRicevuta" name="importoRicevuta" ng-model="importoRicevuta" ng-change="cambiaRicevuta=true" ng-disabled="deletedStud || deletedRic" placeholder="importo" required />
+                </div>
+            </div>
+            <div class="form-group" ng-show="!nuovaRicevuta">
+                <label for="deletedRic" class="col-sm-2">Annullata:</label>
+                <div class="col-sm-1 input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-check"></i></span>
+                    <input type="checkbox" class="input-md form-control importo" id="deletedRic" name="deletedRic" ng-model="deletedRic" ng-change="cambiaRicevuta=true" ng-disabled="deletedStud" required />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 panel-transparent" ng-show="!tabellaCassa && !frameRicevuta">
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <input type="button" id="salvaRicevuta" class="btn btn-primary" value="Salva" ng-show="cambiaRicevuta && !formAnagrafe.nominativoSoggetto.$invalid && !formAnagrafe.codiceFiscaleSoggetto.$invalid && !formAnagrafe.importoRicevuta.$invalid && !formAnagrafe.dataRicevuta.$invalid" ng-click="ricevutaStud_Salva()" />
+                    <input type="button" id="stampaRicevuta" class="btn btn-default" value="Stampa" ng-show="!cambiaRicevuta && !nuovaRicevuta && !formAnagrafe.nominativoSoggetto.$invalid && !formAnagrafe.codiceFiscaleSoggetto.$invalid && !formAnagrafe.dataRicevuta.$invalid && !deletedRic" ng-click="ricevutaStud_Stampa('EL')" />
+                </div>
+                <div class="col-sm-4">
+                    <input type="button" id="cancellaRicevuta" class="btn btn-default" value="Elimina" ng-show="false" ng-click="ricevutaStud_Del()" />
+                </div>
+                <div class="col-sm-4">
+                    <input type="button" id="annullaRicevuta" class="btn btn-danger" value="Chiudi" ng-click="ricevutaStud_Off()" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    </head>
+    
+    <body>
+
+        <div id="BodyMail">
+
+            <header style="background-color:lightpink; border-radius:5px; padding:5px;">
+                <h4>{ragioneSociale}</h4>
+                <h4>Sede di: {luogo}</h4>
+
+                <h4>Data: {dataOffertaGMA}</h4>
+                <h4>Ora: {orario}</h4>
+            </header>
+
+            <div id="textSection">
+                <table>
+                    <tr>
+                        <td class="sx">Status:</td>
+                        <th>{statusOfferta}</th>
+                    </tr>
+                    <tr>
+                        <td><hr /></td>
+                        <td><hr /></td>
+                    </tr>
+                    <tr>
+                        <td class="sx">Docente:</td>
+                        <td>{nomeProf} con Didattica {distanza}</td>
+                    </tr>
+                    <tr>
+                        <td class="sx">Studente:</td>
+                        <td>{nomeStud} {gruppoStud} Tel: {tel1Stud}</td>
+                    </tr>
+                    <tr>
+                        <td class="sx">Materia: </td>
+                        <td>{materia}</td>
+                    </tr>
+                    <tr>
+                        <td class="sx">Indirizzo:</td>
+                        <td>{istitutoTipo}</td>
+                    </tr>
+                    <tr>
+                        <td class="sx">Anno:</td>
+                        <td>{anno}</td>
+                    </tr>
+                    <tr>
+                        <td class="sx">Argomento:</td>
+                        <td>{argomentoOfferta}</td>
+                    </tr>                    
+                    <tr>
+                        <td class="sx">Note:</td>
+                        <td>{notaOfferta}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <br />
+            <br />
+
+            <!--<footer>
+                <p>Saluti</p>
+                <p>Segreteria </p>                
+                <p>Portofranco Palermo</p>
+            </footer>-->
+
+        </div>
+
+        <style type="text/css">
+            body {
+                width:90%;
+                margin-top:2%;
+                margin-left:auto;
+                margin-right:auto;
+                /*background-color:whitesmoke;*/
+                /*font-family: Verdana, 'Times New Roman';*/
+            }
+
+            header {
+                margin-left:auto;
+                margin-right:auto;
+                /*padding:5px;
+                background-color:lightpink;
+                border-radius:5px;*/
+            }
+
+            table {
+                width:90%;
+                margin-left:auto;
+                margin-right:auto;
+                border: 1px inset #808080;
+                /*font-size:15px;*/
+            }
+
+            /*th {
+                width:100%;
+                font-size:12px;      
+                text-align:center;     
+            }*/
+            .sx {
+                text-align:right;
+                font-weight:bold;
+            }
+
+            h4 {
+                text-align:center;
+                /*font-size: 14px;*/
+            }
+
+            #textSection {
+                margin-top: 50px;
+            }
+            
+        </style>
+    </body>
+
+</html>

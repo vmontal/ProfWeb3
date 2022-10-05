@@ -1,0 +1,28 @@
+{
+"header":
+	{
+	"ragioneSociale": "Associazione di Volontariato PORTOFRANCO",
+	"sedeLegale":"Via Torricelli 3 - 90145 Palermo",
+	"codiceFiscale":"97325720825",
+	"registroVolontariatoNr": "2008",
+	"registroVolontariatoDt": "21/11/2017"
+	},
+	
+"corpo":
+	{
+	"dichiara":"PORTOFRANCO PALERMO dichiara inoltre la propria natura non commerciale ai sensi dell'art.79, c.5 del D.Lgs n.117 del 3 luglio 2017.",
+	"privacy": "Ai sensi e per gli effetti del DLgs n. 193 del 2003, La informiamo che il trattamento dei Suoi dati viene effettuato per l’esclusivo perseguimento delle finalità statutarie dell’Ente. Esente da bollo ai sensi dell’art. 82 del D.Lgs.n.117 del 3 luglio 2017"
+	},
+	
+"footer":
+	{
+	"sx":"Copia per la Segreteria",
+	"dx":"Copia per chi effettua il versamento"
+	},
+	
+"parametri":
+	{
+	"posizione": "landscape",
+	"formato": "A4"
+	}
+}

@@ -1,0 +1,69 @@
+﻿<section id="main" class="panel-transparent" style="display:none">
+   
+    <header class="container-fluid well">
+        <div class="col-sm-3">
+            <img ng-src="{{path}}assId{{idRS}}.jpg?ver={{versione}}" class="img-rounded img-responsive sedeImg" />
+        </div>
+        <div class="col-sm-6">
+            <h2 class="text-center">{{ragioneSociale}}</h2>
+        </div>
+        <div class="col-sm-3">
+            <img ng-src="{{path}}assId{{idRS}}.jpg?ver={{versione}}" class="img-rounded img-responsive sedeImg" />
+        </div>
+    </header>
+    <hr />
+    <div class="text-center">
+        <div class="menu container-fluid">
+            <div id="struttura" class="master left home">
+                <div class="mainSez" ng-click="apri('struttura','anagrafe', 0, 'S')">
+                    <p class="textMenu">Struttura</p>
+                    <img class="icon" src="../img/icons/traffic_lights_red.png" ng-show="lightAmministra('R')" />
+                    <img class="icon" src="../img/icons/traffic_lights_green.png" ng-show="lightAmministra('G')" />
+                </div>
+                <div class="slaveSez" ng-show="unSelect('struttura')"></div>
+            </div>
+            <div id="personale" class="master left home">
+                <div class="mainSez" ng-click="apri('personale','anagrafe', 0, 'P')">
+                    <p class="textMenu">Personale</p>
+                    <img class="icon" src="../img/icons/traffic_lights_red.png" ng-show="lightAmministra('R')" />
+                    <img class="icon" src="../img/icons/traffic_lights_green.png" ng-show="lightAmministra('G')" />
+                </div>
+                <div class="slaveSez" ng-show="unSelect('personale')"></div>
+            </div>
+            <div id="organizza" class="master left home">
+                <div class="mainSez" ng-click="apri('organizza','anagrafe', 1, 'O')">
+                    <p class="textMenu">Organizza</p>
+                    <img class="icon" src="../img/icons/traffic_lights_red.png" ng-show="lightAmministra('R')" />
+                    <img class="icon" src="../img/icons/traffic_lights_green.png" ng-show="lightAmministra('G')" />
+                </div>
+                <div class="slaveSez" ng-show="unSelect('organizza')"></div>
+            </div>
+            <div id="prenota" class="master left home">
+                <div class="mainSez" ng-click="apri('prenota','prenota', 1, 'G')">
+                    <p class="textMenu">Gestione</p>
+                    <img class="icon" src="../img/icons/traffic_lights_red.png" ng-show="lightGestione('R')" />
+                    <img class="icon" src="../img/icons/traffic_lights_green.png" ng-show="lightGestione('G')" />
+                </div>
+                <div class="slaveSez" ng-show="unSelect('prenota')"></div>
+            </div>
+            <div id="controllo" class="master left home">
+                <div class="mainSez" ng-click="apri('controllo','controllo', 0, 'R')">
+                    <p class="textMenu">Report</p>
+                    <img class="icon" src="../img/icons/traffic_lights_red.png" ng-show="lightControllo('R')" />
+                    <img class="icon" src="../img/icons/traffic_lights_green.png" ng-show="lightControllo('G')" />
+                </div>
+                <div class="slaveSez" ng-show="unSelect('controllo')"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center" ng-show="elencoSede">
+        <div class="menuSede">
+            <div class="pull-left" ng-repeat="sede in elencoSedi">
+                <img id="sede{{sede.idSede}}" ng-src="{{sede.imgPath}}assId{{sede.idRS}}-sedeId{{sede.idSede}}.jpg?ver={{versione}}" class="img-rounded img-responsive sedeImg" ng-click="selectSede(sede.idSede)" />
+                <p class="text-center sedeNome">{{sede.indirizzoSede}} <br /> {{sede.descrizioneSede}}</p>
+            </div>
+        </div>
+    </div>
+
+</section>

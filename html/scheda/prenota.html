@@ -1,0 +1,602 @@
+﻿<section id="schedaGestione" class="panel-transparent" style="display:none">
+
+    <div class="panel-transparent">
+               
+		<header id="hPrenota" class="col-sm-12 panel" >
+
+            <div class="col-sm-1 well">
+                <img class="img-rounded img-responsive logoImg" ng-src="{{path}}assId{{idRS}}.jpg?ver={{versione}}"  ng-click="mainBack()"/>
+                <div class="block-center">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="glyphicon glyphicon-menu-hamburger"></span>                  
+                    </button>
+                </div>
+            </div>
+
+            <div id="divMenu" class="col-sm-11">
+                <nav class="navbar navbar-default ">
+                    <div class="container-fluid">
+                        
+                        <div id="myNavbar" class="collapse navbar-collapse">
+
+                            <ul class="nav navbar-nav" ng-show="!schedaOff && !riprogramma">
+                                <!--<li ><a ng-click="selectTab('H')"><span class="glyphicon glyphicon-menu-hamburger"></span></a></li>-->
+                                <li ng-show="true" class="barMenu"><a ng-click="nuovaScheda()"><span class="glyphicon glyphicon-menu-hamburger"></span> </a></li>
+                                <li ng-show="true"><a>|</a></li>
+                                <li ng-class="{activeSez:isSelected('I')}" ng-show="true" class="barMenu"><a ng-click="scheda('I')"><span class="glyphicon glyphicon-user"></span> Libere</a></li>
+                                <li ng-class="{activeSez:isSelected('P')}" ng-show="true" class="barMenu"><a ng-click="scheda('P')"><span class="glyphicon glyphicon-book"></span> Prenotate</a></li>
+                                <li ng-class="{activeSez:isSelected('E')}" ng-show="true" class="barMenu"><a ng-click="scheda('E')"><span class="glyphicon glyphicon-book"></span> Erogate</a></li>
+                                <li ng-class="{activeSez:isSelected('X')}" ng-show="true" class="barMenu"><a ng-click="scheda('X')"><span class="glyphicon glyphicon-cog"> </span> Attesa</a></li>
+                                <li ng-show="true"><a>|</a></li>
+                                <li ng-class="{activeDay:isTime('O')}" ng-show="true" class="barMenu"><a ng-click="schedaTime('O', 0)"><span class="glyphicon glyphicon-list"></span> Oggi</a></li>
+                                <li ng-class="{activeDay:isTime('S')}" ng-show="true" class="barMenu"><a ng-click="schedaTime('S',30)"><span class="glyphicon glyphicon-list"></span> +30 </a></li>
+                                <!--<li ng-show="true"><a>|</a></li>-->
+                                <li ng-class="{activeDay:isSelected('G')}" ng-show="true" class="barMenu"><a ng-click="scheda('G')"><span class="glyphicon glyphicon-list-alt"></span> Tutto</a></li>
+                                <li ng-show="true"><a>|</a></li>
+                                <li ng-show="true" class="barMenu"><a ng-click="scheda('W')"><span class="glyphicon glyphicon-ban-circle"></span> Post.</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav" ng-show="cambia">
+                                <li><a class="evidenzia"><span class="glyphicon glyphicon-alert"></span> Attenzione! Ricorda di salvare la scheda.</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav" ng-show="riprogramma && !cambia">
+                                <li><a class="riprogrammata"><span class="glyphicon glyphicon-alert"></span> Stai riprogrammando la lezione di {{materia}} per lo(a) studende(ssa) {{Studente}}.</a></li>
+                            </ul>
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li ng-show="!schedaOff && isSelected('G') "    ng-click="download_xls()" class="barMenu">   <a><span class="glyphicon glyphicon-download"></span> Scarica</a></li>
+                                <li ng-show="cambia && !offertaErrata"          ng-click="salvaScheda('U')" class="barMenu">     <a><span class="glyphicon glyphicon-ok">    </span> Salva </a></li>
+                                <li ng-show="schedaNew && dateOK()"             ng-click="salvaScheda('X', aggiorna)" class="barMenu" ><a><span class="glyphicon glyphicon-ok"></span> Genera </a></li>
+                                <li ng-show="cambia"     ng-click="annullaScheda()" class="barMenu"> <a><span class="glyphicon glyphicon-off">   </span> Annulla</a></li>
+                                <li ng-show="!cambia"    ng-click="annullaScheda()" class="barMenu"> <a><span class="glyphicon glyphicon-off">   </span> Esci</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="panel col-sm-6"><h4 class="text-center">Gestione Lezioni</h4></div>
+                            <!--<div class="panel col-sm-4"><h2 class="text-center text-capitalize">Lezione </h2></div>-->
+                            <div class="panel col-sm-6"><h4 class="text-center">Sede: {{luogo}}</h4></div>
+                            <!--<div class="panel col-sm-4"><h4 class="text-center">A.S. {{as}}</h4></div>-->
+                        </div>
+
+                    </div>
+                </nav>
+            </div>
+
+		</header>
+         
+        <form name="formGestione" class="form-vertical" novalidate>
+            <div id="divPrenota">                                          
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div id="tabellaOfferte" class="table-container" ng-show="!schedaOff">            
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="container">
+
+                    <div class="col-sm-12 panel panel-default" ng-show="schedaOff && !schedaNew">
+                        <div class="col-sm-12">
+
+                            <!-- id Offerta -->
+                            <div class="form-group" style="display:none">
+                                <label for="idOfferta" class="control-label col-sm-3">id Offerta:</label>
+                                <div class="col-sm-3 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" id="idOfferta" class="input-md form-control" name="idOfferta" ng-model="idOfferta" ng-disabled="never" ng-change="cambia=true" readonly />
+                                </div>
+                            </div>
+
+                            <!-- id Lezione -->
+                            <div class="form-group" style="display:none">
+                                <label for="idLezione" class="control-label col-sm-3">id Lezione:</label>
+                                <div class="col-sm-3 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" id="idLezione" class="input-md form-control" name="idLezione" ng-model="idLezione" ng-disabled="never" ng-change="cambia=true" readonly />
+                                </div>
+                            </div>
+
+                            <!-- id Professore -->
+                            <div class="form-group" style="display:none">
+                                <label for="idProfessore" class="control-label col-sm-3">id Professore:</label>
+                                <div class="col-sm-3 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" id="idProfessore" class="input-md form-control" name="idProfessore" ng-model="idProfessore" ng-disabled="never" ng-change="cambia=true" readonly />
+                                </div>
+                            </div>
+
+                            <!-- id Materia -->
+                            <div class="form-group" style="display:none">
+                                <label for="idMateria" class="control-label col-sm-3">id Materia:</label>
+                                <div class="col-sm-3 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" id="idMateria" class="input-md form-control" name="idMateria" ng-model="idMateria" ng-disabled="never" ng-change="cambia=true" readonly />
+                                </div>
+                            </div>
+
+                            <!-- id Orario -->
+                            <div class="form-group" style="display:none">
+                                <label for="idOrario" class="control-label col-sm-3">id Orario:</label>
+                                <div class="col-sm-3 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" id="idOrario" class="input-md form-control" name="idOrario" ng-model="idOrario" readonly="true" />
+                                </div>
+                            </div>
+
+                            <!-- id Giorno -->
+                            <div class="form-group" style="display:none">
+                                <label for="idGiorno" class="control-label col-sm-3">id Giorno:</label>
+                                <div class="col-sm-3 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" id="idGiorno" class="input-md form-control" name="idGiorno" ng-model="idGiorno" readonly />
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+
+                                <!-- dataOfferta-->
+                                <div class="form-group col-sm-5">
+                                    <label for="dataOffertaGMA" class="control-label col-sm-3">Data:</label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                        <!--<input type="text" id="dataOffertaGMA" class="input-md form-control tempo"  name="dataOffertaGMA" ng-model="dataOffertaGMA" ng-disabled="dataBloccata" ng-class="{dataOffertaChange:(idStatusOfferta == 8 || idStatusOfferta == 9)}" ng-change="aggiornaOrario()" readonly />-->
+                                        <select class="form-control" id="dataOffertaGMA" name="dataOffertaGMA" ng-model="dataOffertaGMA" ng-disabled="dataBloccata" ng-class="{dataOffertaChange:(idStatusOfferta == 8 || idStatusOfferta == 9)}" ng-change="aggiornaOrario()">
+                                            <option ng-repeat="item in elencoCalendario" value={{item.giornoGMA}}>{{item.nomeGiorno}} - {{item.giornoGMA}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- giorno-->
+                                <div class="form-group col-sm-3">
+                                    <!--<label  for="dataOffertaGMA" class="control-label col-sm-3">Data:</label>-->
+                                    <div class="col-sm-12 input-group">
+                                        <!--<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>-->
+                                        <input type="text" id="giorno" class="input-md form-control" name="giorno" ng-model="giorno" ng-disabled="true" readonly />
+                                    </div>
+                                </div>
+
+                                <!-- Ora-->
+                                <div class="form-group col-sm-3">
+                                    <!--<label  for="orario" class="control-label col-sm-3">Orario:</label>-->
+                                    <div class="col-sm-12 input-group">
+                                        <select class="form-control" id="idOra" name="idOra" ng-model="idOra" ng-disabled="idStatusOfferta != 8 && idStatusOfferta != 9" ng-class="{dataOffertaChange:(idStatusOfferta == 8 || idStatusOfferta == 9)}" ng-change="cambia=true" required>
+                                            <option ng-repeat="item in elencoOrari | filter: { idGiorno: idGiorno }" value={{item.idOra}}>{{item.ora}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-12">
+                                <!-- Docente-->
+                                <div class="form-group col-sm-5">
+                                    <label for="nomeProf" class="control-label col-sm-3">Docente:</label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                        <input type="text" id="nomeProf" class="input-md form-control" name="nomeProf" ng-model="nomeProf" readonly />
+                                    </div>
+                                </div>
+
+                                <!-- Materia-->
+                                <div class="form-group col-sm-5">
+                                    <!--<label  for="materia" class="control-label col-sm-3">Materia:</label>-->
+                                    <div class="col-sm-11 input-group">
+                                        <!--<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>-->
+                                        <input type="text" id="materia" class="input-md form-control" name="materia" ng-model="materia" readonly />
+                                    </div>
+                                </div>
+
+                                <!-- Anni -->
+                                <div class="form-group col-sm-2">
+                                    <label for="anni" class="control-label col-sm-5">Anni:</label>
+                                    <div class="col-sm-7 input-group">
+                                        <!--<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>-->
+                                        <input type="text" id="anni" class="input-md form-control text-center" name="anni" ng-model="anni" readonly />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-12">
+                                <!-- Modalità  -->
+                                <div class="form-group col-sm-5">
+                                    <label for="idStatusOfferta" class="control-label col-sm-3">Disp. Docente:</label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                        <!-- <input type="text" id="Text1" class="input-md form-control"  name="anni" ng-model="anni" ng-disabled="never" ng-change="cambia=true" readonly="true" /> -->
+                                        <select class="form-control" id="modoLezione" name="modoLezione" ng-model="modoLezione" ng-disabled="!sempre" >
+                                            <!--ng-disabled="erogata || annullata || erogataPassato || riprogramma" ng-change="offertaCheck()">-->
+                                            <option value=0>Completa</option>
+                                            <option value=1>Solo Presenza</option>
+                                            <option value=2>Solo Distanza</option>
+                                        </select>
+                                        <input type="text" id="disdetteStud" class="input-md form-control" name="disdetteStud" ng-model="disdetteStud" ng-hide="true" readonly />
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sm-5" ng-show="modoLezione == 0">
+                                    <label for="distanza" class="control-label col-sm-8">Didattica a Distanza:</label>
+                                    <div class="col-sm-4 input-group">
+                                        <input type="checkbox" id="distanza" class="input-md form-control" name="distanza" ng-model="distanza" ng-change="cambia=true" /> <!--ng-disabled="modoLezione != 0"-->
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-12">
+                                <!-- Studente -->
+                                <div class="form-group col-sm-5">
+                                    <label for="idStudente" class="control-label col-sm-3">Studente:</label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                        <select class="form-control" id="idStudente" name="idStudente" ng-model="idStudente" ng-disabled="erogata || prenotata || annullata || riprogramma || erogataPassato" ng-change="offertaCheck()">
+                                            <option ng-repeat="item in elencoStudenti" value={{item.idStudente}}>{{item.nomeStud}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Tipo istituto -->
+                                <div class="form-group col-sm-5">
+                                    <div class="col-sm-11 input-group">
+                                        <!--<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>-->
+                                        <input type="text" id="istitutoTipo" class="input-md form-control" name="istitutoTipo" ng-model="istitutoTipo" readonly />
+                                    </div>
+                                </div>
+
+                                <!-- Anni -->
+                                <div class="form-group col-sm-2">
+                                    <label for="anno" class="control-label col-sm-5">Anno:</label>
+                                    <div class="col-sm-7 input-group">
+                                        <!--<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>-->
+                                        <!--<input type="text" id="anno" class="input-md form-control text-center"  name="anno" ng-model="anno" ng-disabled="never" readonly="true" />-->
+                                        <select class="input-md form-control text-center" id="anno" name="anno" ng-model="anno" ng-disabled="!sempre" readonly>
+                                            <option value="1">1°</option>
+                                            <option value="2">2°</option>
+                                            <option value="3">3°</option>
+                                            <option value="4">4°</option>
+                                            <option value="5">5°</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-12">
+                                <!-- Stato -->
+                                <div class="form-group col-sm-5">
+                                    <label for="idStatusOfferta" class="control-label col-sm-3">Stato:</label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                        <!-- <input type="text" id="Text1" class="input-md form-control"  name="anni" ng-model="anni" ng-disabled="never" ng-change="cambia=true" readonly="true" /> -->
+                                        <select class="form-control" id="idStatusOfferta" name="idStatusOfferta" ng-class="{dataOffertaChange: erogataFuturo }" ng-model="idStatusOfferta" ng-disabled="erogata || annullata || erogataPassato || riprogramma" ng-change="offertaCheck()">
+                                            <option ng-repeat="item in statusOfferte" value={{item.idStatusOfferta}}>{{item.statusOfferta}}</option>
+                                        </select>
+                                        <input type="text" id="disdetteStud" class="input-md form-control" name="disdetteStud" ng-model="disdetteStud" ng-hide="true" readonly />
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sm-2" ng-show="idStatusOfferta != 1">
+                                    <label for="gruppoStud" class="control-label col-sm-5">Gruppo:</label>
+                                    <div class="col-sm-7 input-group">
+                                        <input type="checkbox" id="gruppoStud" class="input-md form-control" name="gruppoStud" ng-model="gruppoStud" ng-disabled="erogata || erogataPassato" ng-change="cambia=true" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="form-group col-sm-5">
+                                    <p ng-show="erogataFuturo">Non puoi erogare una lezione che si deve ancora svolgere!  </p>
+                                    <p ng-show="erogataPassato && !erogata">Non puoi modificare una lezione che si sarebbe già dovuta svolgere!</p>
+                                    <p ng-show="disedettePlus">Lo studente selezionato ha già fatto {{disdetteStud}} disdette</p>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="col-sm-2 form-group">
+                                    <label for="tel1Prof" class="control-label col-sm-12">Rif. Docente:</label>
+                                </div>
+                                <div class="col-sm-3 form-group">
+                                    <div class="col-sm-12 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                        <input type="text" id="tel1Prof" class="input-md form-control" name="tel1Prof" ng-model="tel1Prof" readonly />
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 form-group">
+                                    <div class="col-sm-12 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                        <input type="text" id="tel2Prof" class="input-md form-control" name="tel2Prof" ng-model="tel2Prof" readonly />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 form-group">
+                                    <div class="col-sm-12 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-send"></i></span>
+                                        <input type="text" id="emailProf" class="input-md form-control" name="emailProf" ng-model="emailProf" readonly />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="col-sm-2 form-group">
+                                    <label for="tel1Stud" class="control-label col-sm-12">Rif. Studente:</label>
+                                </div>
+                                <div class="col-sm-3 form-group">
+                                    <div class="col-sm-12 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                        <input type="text" id="tel1Stud" class="input-md form-control" name="tel1Stud" ng-model="tel1Stud" readonly />
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 form-group">
+                                    <div class="col-sm-12 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                        <input type="text" id="tel2Stud" class="input-md form-control" name="tel2Stud" ng-model="tel2Stud" readonly />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 form-group">
+                                    <div class="col-sm-12 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-send"></i></span>
+                                        <input type="text" id="emailStud" class="input-md form-control" name="emailStud" ng-model="emailStud" readonly />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-12 well" ng-show="(idStatusOfferta == 3 || idStatusOfferta == 2)  && !erogataFuturo">
+                            <!-- Argomenti -->
+                            <div class="form-group col-sm-6">
+                                <label for="argomentoOfferta" class="control-label col-sm-7">Argomenti</label>
+                                <div class="col-sm-12 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                    <textarea id="argomentoOfferta" class="input-md form-control" name="argomentoOfferta" ng-model="argomentoOfferta" rows="8" ng-disabled="(idStatusOfferta != 3 && idStatusOfferta != 2)" ng-change="cambia=true" />
+                                </div>
+                            </div>
+                            <!-- Nota -->
+                            <div class="form-group col-sm-6">
+                                <label for="notaOfferta" class="control-label col-sm-7">Note</label>
+                                <div class="col-sm-12 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                    <textarea id="notaOfferta" class="input-md form-control" name="notaOfferta" ng-model="notaOfferta" rows="8" ng-disabled="idStatusOfferta != 3 && (idStatusOfferta != 2 || !gruppoStud)" ng-change="cambia=true" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 well" ng-show="idStudente != 0">
+                            <h3 class="text-center">Storico prenotazioni</h3>
+                            <hr />
+                            <div class="form-group col-sm-4">
+                                <label for="Erogata" class="control-label col-sm-4">Erogate:</label>
+                                <div class="col-sm-4 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                    <input type="number" id="Erogata" class="input-md form-control" name="Erogata" ng-model="Erogata" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="Disdetta" class="control-label col-sm-4">Disdette:</label>
+                                <div class="col-sm-4 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                    <input type="number" id="Disdetta" class="input-md form-control" name="Disdetta" ng-model="Disdetta" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="Prenotata" class="control-label col-sm-4">Prenotate:</label>
+                                <div class="col-sm-4 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                    <input type="number" id="Prenotata" class="input-md form-control" name="Prenotata" ng-model="Prenotata" readonly />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-12" style="margin-top:5rem" ng-show="schedaOff && schedaNew" >
+
+                        <div class="container well">    
+                                                    
+                            <div class="col-sm-12">
+                                <label  for="aggiorna" class="control-label col-sm-5" style="font-size:2rem">Aggiorna Offerta Formativa:</label>
+                                <div class="col-sm-6">
+                                    <select id="aggiorna" class="form-control" ng-model="aggiorna">
+                                        <!--<option value="1">Schedula Nuove Lezioni</option>-->
+                                        <option value="2">Annulla Attività per Docente / Struttura</option>
+                                        <!--<option value="3">Cancella Lezioni</option>-->
+                                        <!--<option value="4">Ripristina Attività per Docente / Struttura</option>-->
+                                        <option value="5">Ripristina Lezioni Annullate per Docente / Struttura</option>
+                                    </select>                            
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="container well">
+                        
+                            <div class="col-sm-12 panel panel-default" ng-show="aggiorna==1">
+                                <!-- dataIniziale-->
+                                <div class="form-group col-sm-12">    
+                                    <label  for="dataIniziale" class="control-label col-sm-5">Data Iniziale:</label>
+                                    <div class="col-sm-3 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        <input type="text" id="dataIniziale" class="input-md form-control tempo"  name="dataIniziale" ng-model="dataIniziale" readonly="true" placeholder="data inziale" required />                               
+                                    </div>
+                                </div>
+
+                                <!-- dataFinale-->
+                                <div class="form-group col-sm-12">    
+                                    <label  for="dataFinale" class="control-label col-sm-5">Data Finale:</label>
+                                    <div class="col-sm-3 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        <input type="text" id="dataFinale" class="input-md form-control tempo"  name="dataFinale" ng-model="dataFinale" ng-disabled="formGestione.dataIniziale.$invalid"  placeholder="default = 1 mese dopo" readonly="true" />                               
+                                    </div>
+                                </div>
+
+                                <!-- ponteFestivo-->
+                                <div class="form-group col-sm-12">    
+                                    <label  for="ponteFestivo" class="control-label col-sm-5">Blocca Ponte Festività Infrasettimanale:</label>
+                                    <div class="col-sm-1 input-group">
+                                        <!--<span class="input-group-addon"><i class="glyphicon glyphicon-ok"></i></span>-->
+                                        <input type="checkbox" id="ponteFestivo" class="input-md form-control"  name="ponteFestivo" ng-model="ponteFestivo" ng-disabled="formGestione.dataIniziale.$invalid" />                               
+                                    </div>
+                                </div>
+
+                                <!-- preFestivo-->
+                                <div class="form-group col-sm-12">    
+                                    <label  for="preFestivo" class="control-label col-sm-5">Blocca pre-Festivo:</label>
+                                    <div class="col-sm-1 input-group">
+                                        <!--<span class="input-group-addon"><i class="glyphicon glyphicon-ok"></i></span>-->
+                                        <input type="checkbox" id="preFestivo" class="input-md form-control"  name="preFestivo" ng-model="preFestivo" ng-disabled="formGestione.dataIniziale.$invalid" />                               
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-sm-12 panel panel-default" ng-show="aggiorna==2">
+                                <!-- dataIniziale-->
+                                <div class="form-group col-sm-12">    
+                                    <label  for="sospendiInizio" class="control-label col-sm-5">Data Iniziale:</label>
+                                    <div class="col-sm-3 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        <input type="text" id="sospendiInizio" class="input-md form-control tempo"  name="sospendiInizio" ng-model="sospendiInizio" placeholder="data iniziale" readonly="true" required />                               
+                                    </div>
+                                </div>
+
+                                <!-- dataFinale-->
+                                <div class="form-group col-sm-12">    
+                                    <label  for="sospendiFine" class="control-label col-sm-5">Data Finale:</label>
+                                    <div class="col-sm-3 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        <input type="text" id="sospendiFine" class="input-md form-control tempo"  name="sospendiFine" ng-model="sospendiFine" ng-disabled="formGestione.sospendiInizio.$invalid" placeholder="default: la stessa data iniziale" readonly="true" />                               
+                                    </div>
+                                </div>
+
+                                <!-- Docente-->
+                                <div class="form-group col-sm-12">    
+                                    <label  for="idProfessoreS" class="control-label col-sm-5">Docente:</label>
+                                    <div class="col-sm-6 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <select class="form-control" id="idProfessoreS" name="idProfessoreS" ng-model="idProfessoreS"  ng-disabled="formGestione.sospendiInizio.$invalid">
+                                            <option ng-repeat="item in elencoProfessori" value={{item.idProfessore}}>{{item.nomeProf}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <pre>Toglie le offerte dalla schedulazione; <br />da utilizzare quando un docente non può fare lezioni per il periodo indicato. <br />N.B. (eventualmente da riattivare con Ripristina Attività)</pre>
+
+                            </div>
+
+                            <div class="col-sm-12 panel panel-default" ng-show="aggiorna==3">
+                                <!-- dataIniziale-->
+                                <div class="form-group col-sm-12">    
+                                    <label  for="sospendiInizioE" class="control-label col-sm-5">Data Iniziale:</label>
+                                    <div class="col-sm-3 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        <input type="text" id="sospendiInizioE" class="input-md form-control tempo"  name="sospendiInizioE" ng-model="sospendiInizioE" placeholder="data iniziale" readonly="true" required />                               
+                                    </div>
+                                </div>
+
+                                <!-- dataFinale-->
+                                <div class="form-group col-sm-12">    
+                                    <label  for="sospendiFineE" class="control-label col-sm-5">Data Finale:</label>
+                                    <div class="col-sm-3 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        <input type="text" id="sospendiFineE" class="input-md form-control tempo"  name="sospendiFineE" ng-model="sospendiFineE" ng-disabled="formGestione.sospendiInizioE.$invalid" placeholder="default: la stessa data iniziale" readonly="true" />                               
+                                    </div>
+                                </div>
+
+                                <!-- Docente-->
+                                <div class="form-group col-sm-12">    
+                                    <label  for="idProfessoreE" class="control-label col-sm-5">Docente:</label>
+                                    <div class="col-sm-6 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <select class="form-control" id="idProfessoreE" name="idProfessoreE" ng-model="idProfessoreE"  ng-disabled="never">
+                                            <option ng-repeat="item in elencoProfessori" value={{item.idProfessore}}>{{item.nomeProf}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <pre>Cancella le offerte dalla schedulazione; <br />da utilizzare quandi si vuole resettare il piano delle offerte o si vuole aggiornare un singolo docente. <br /> N.B. (eventualmente da riattivare con Schedula Nuove Lezioni)</pre>
+
+                            </div>
+
+                            <div class="col-sm-12 panel panel-default" ng-show="aggiorna==4">
+                                <!-- dataIniziale-->
+                                <div class="form-group col-sm-12">    
+                                    <label  for="riattivaInizio" class="control-label col-sm-5">Data Iniziale:</label>
+                                    <div class="col-sm-3 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        <input type="text" id="riattivaInizio" class="input-md form-control tempo"  name="riattivaInizio" ng-model="riattivaInizio" placeholder="data iniziale" readonly="true" required />                               
+                                    </div>
+                                </div>
+
+                                <!-- dataFinale-->
+                                <div class="form-group col-sm-12">    
+                                    <label  for="riattivaFine" class="control-label col-sm-5">Data Finale:</label>
+                                    <div class="col-sm-3 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        <input type="text" id="riattivaFine" class="input-md form-control tempo"  name="riattivaFine" ng-model="riattivaFine" ng-disabled="formGestione.riattivaInizio.$invalid" placeholder="default: la stessa data iniziale" readonly="true" />                               
+                                    </div>
+                                </div>
+
+                                <!-- Docente-->
+                                <div class="form-group col-sm-12">    
+                                    <label  for="idProfessoreA" class="control-label col-sm-5">Docente:</label>
+                                    <div class="col-sm-6 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <select class="form-control" id="idProfessoreA" name="idProfessoreA" ng-model="idProfessoreA"  ng-disabled="never">
+                                            <option ng-repeat="item in elencoProfessori" value={{item.idProfessore}}>{{item.nomeProf}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <pre>Ripristina le lezioni che sono state Annullate dal Docente; <br />da utilizzare quandi si vogliono riprendere le lezioni annullate.</pre>
+                                                       
+                            </div>
+
+                            <div class="col-sm-12 panel panel-default" ng-show="aggiorna==5">
+                                <!-- dataIniziale-->
+                                <div class="form-group col-sm-12">    
+                                    <label  for="riattivaInizioC" class="control-label col-sm-5">Data Iniziale:</label>
+                                    <div class="col-sm-3 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        <input type="text" id="riattivaInizioC" class="input-md form-control tempo"  name="riattivaInizioC" ng-model="riattivaInizioC" placeholder="data iniziale" readonly="true" required />                               
+                                    </div>
+                                </div>
+
+                                <!-- dataFinale-->
+                                <div class="form-group col-sm-12">    
+                                    <label  for="riattivaFineC" class="control-label col-sm-5">Data Finale:</label>
+                                    <div class="col-sm-3 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        <input type="text" id="riattivaFineC" class="input-md form-control tempo"  name="riattivaFineC" ng-model="riattivaFineC" ng-disabled="formGestione.riattivaInizioC.$invalid" placeholder="default: la stessa data iniziale" readonly="true" />                               
+                                    </div>
+                                </div>
+
+                                <!-- Docente-->
+                                <div class="form-group col-sm-12">    
+                                    <label  for="idProfessoreC" class="control-label col-sm-5">Docente:</label>
+                                    <div class="col-sm-6 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <select class="form-control" id="idProfessoreC" name="idProfessoreC" ng-model="idProfessoreC"  ng-disabled="never">
+                                            <option ng-repeat="item in elencoProfessori" value={{item.idProfessore}}>{{item.nomeProf}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <pre>Ripristina le lezioni che sono state Cancellate dalla Segreteria; <br />da utilizzare quandi si vogliono riattivare i giorni di chiusura o le lezioni cancellate di un sigolo docente.</pre>
+                                                                                          
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</section>

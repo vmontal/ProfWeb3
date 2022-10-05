@@ -1,0 +1,33 @@
+{
+"informativa":
+	{
+	"title":"Informativa Privacy Policy",
+	"text":"DICHIARO di aver letto l’informativa privacy e AUTORIZZO il trattamento dei miei dati, in conformità a quanto previsto dal Regolamento U.E. n. 69/2016 e dagli artt. 10 e 13 della L. n. 195/1996 e successive modifiche, per gli adempimenti connessi all’attività di PORTOFRANCO RIMINI"
+	},
+	
+"regolamento":
+	{
+	"title":"Regolamento",
+	"text": "Gli studenti sono aiutati gratuitamente nell’affrontare l’impegno scolastico al fine di far loro acquisire un metodo di studio autonomo, di farli crescere come persone e di introdurli alla totalità della realtà. Il centro opera presso alcuni locali di via Molise 14 Rimini, nei giorni e negli orari previsti, ed è sorto per iniziativa di alcuni adulti e insegnanti che intendono offrire la loro esperienza didattica ed educativa ai giovani e venire così incontro alle esigenze delle famiglie che richiedono per i figli un luogo serio di lavoro e di crescita, impegnandosi così nell’affrontare insieme i vari aspetti del disagio giovanile e dell’emergenza educativa. L’attività di studio segue il calendario scolastico. Alla fine dell'anno scolastico sarà possibile usufruire di una attività di studio per il recupero di debiti, entro i limiti dei volontari disponibili per il periodo. Eventuali chiusure non previste dal calendario scolastico saranno tempestivamente comunicate. L’iscrizione è obbligatoria e gratuita e sarà preceduta da un colloquio propedeutico. L’intervento dei docenti è gratuito. Le iscrizioni saranno accettate fino al raggiungimento del numero massimo di posti disponibili."
+	},
+	
+"trattamento":
+	{
+	"title":"Trattamento dei dati personali",
+	"text":"AUTORIZZO in conformità a quanto previsto dall'art 23 D.Lgs. N. 196 del 30 Giugno 2003, la ripresa delle immagini video/fotografiche del suddetto effettuate da personale incaricato da Portofranco Rimini nell’ambito dello svolgimento delle proprie attività e di manifestazioni di carattere pubblico (ad esempio di momenti di festa, ricreazione, attività sportive, conferenze, mostre) e la pubblicazione delle stesse al solo scopo della diffusione e della promozione dell’Associazione all’interno di brochure, manifesti o di altro materiale idoneo alla divulgazione dell’iniziativa, compresa la pubblicazione su eventuale sito ufficiale dell’associazione. DICHIARO di essere stato informato e di accettare di non avere nulla a pretendere dagli Organizzatori in relazione all’autorizzazione di cui sopra."
+	},
+	
+"testoPrivacy":
+	{
+	"title":"Informativa trattamento dati",
+	"text":"L’associazione Portofranco Rimini Associazione di Promozione Sociale, di seguito denominata PORTOFRANCO RIMINI, con sede a Rimini in via Flaminia 18-20 RIMINI, desidera informarLa che il D.lgs. 196/2003 ('Codice in materia di protezione dei dati personali') e il Regolamento UE n. 679 del 04.05.2016, denominato 'General Data Protection Regulation', prevedono la tutela delle persone e di altri soggetti rispetto al trattamento dei dati personali. Secondo la normativa indicata, tale trattamento sarà improntato ai principi di correttezza, liceità e trasparenza e di tutela della Sua riservatezza e dei Suoi diritti..."
+	},
+	
+"firmaStudente":
+	{
+	"title": "firmaStudente",
+	"text": "CHIEDO - condividendo gli scopi, i valori ed il Regolamento di Portofranco Rimini Associazione di Promozione Sociale - l’iscrizione ai corsi di aiuto allo studio per l’anno scolastico corrente.",
+	"studente": "Firma del Richiedente",
+	"genitore": "Firma del Genitore (se minorenne)"
+	}
+}

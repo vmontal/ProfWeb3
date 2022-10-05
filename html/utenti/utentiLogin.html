@@ -1,0 +1,228 @@
+﻿<section id="schedaLogin" class="panel-transparent" style="display:none" >
+
+    <form name="formLogin" novalidate>
+        <div class="container">
+            <div class="row">
+
+                <div class="container well" ng-show="login && !cambiaPassword">
+                    <div class="col-sm-12 form-group">
+                        <div class="center-block">
+                            <div class="text-center">
+                                <img ng-src="img/parametri.jpg?ver={{versione}}" class="img-rounded" ng-click="mainBack()" />
+                            </div>
+                        </div>
+
+                        <div class="form-group div_tabella col-sm-12">
+                            <!-- User input fa fa-envelope-o fa-fw -->
+                            <div class="form-group">
+                                <!--<label for="utente" class="control-label col-sm-3">Utente:</label>-->
+                                <div class="col-sm-offset-4 col-sm-4 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input type="text" class="input-md verifica form-control" id="utente" name="utente" ng-model="utente" placeholder="Nome Utente" required />
+                                </div>
+                            </div>
+
+                            <!-- Password input fa fa-key fa-fw ng-show="fuori"-->
+                            <div class="form-group">
+                                <!--<label for="password" class="control-label col-sm-3">Password:</label>-->
+                                <div class="col-sm-offset-4 col-sm-4 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-eye-close"></i></span>
+                                    <input type="password" class="input-md verifica form-control" id="password" name="password" ng-model="password" ng-disabled="formLogin.utente.$invalid" placeholder="Password" required />
+                                </div>
+                            </div>
+
+                            <!-- Button id="btn_login" -->
+                            <div class="form-group">
+                                <div class="center-block">
+                                    <button id="accedi" class="btn btn-primary" ng-disabled="formLogin.utente.$invalid || formLogin.password.$invalid" ng-click="accedi()">
+                                        <i class="fa fa-arrow-right" aria-hidden="true"></i> Accedi
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="center-block">
+                                    <p class="reset l25" ng-click="reset()">Recupera Utente e Password</p>
+                                    <!--<p class="reset l25" ng-click="registra()">Crea Nuovo Utente</p>-->
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="center-block">
+                                    <p id="msgConnect"></p>
+                                    <!--<p class="reset l25" ng-click="registra()">Crea Nuovo Utente</p>-->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="text-center">
+                            <h3>Sistema PROF</h3>
+                            <h4>Portofranco Richieste e Offerta Formativa</h4>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="loginPage panel panel-body" ng-show="!login && !cambiaPassword">
+
+                    <div class="col-sm-12 form-group">
+                        <div class="col-sm-3">
+                            <div class="text-center">
+                                <img src="img/parametri.jpg" class="logoPage img-rounded" ng-click="mainBack()" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div>
+                                <h3 class="text-center">Recupera credenziali</h3>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="text-center">
+                                <img src="img/icons/keyPass.png" class="logoPrivacy img-responsive center-block" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        <div class="center-block">
+                            <div class="form-group col-sm-12">
+                                <div class="col-sm-offset-2 col-sm-8 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                    <input type="email" class="input-md form-control" id="emailAccount" name="emailAccount" ng-model="emailAccount" required placeholder="email di registrazione" />
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-12">
+
+                                <div class="col-sm-6 text-center">
+                                    <button class="btn btn-success" ng-disabled="formLogin.emailAccount.$invalid" ng-click="resetAccount()">
+                                        <span class="glyphicon glyphicon-ok"></span> Reset
+                                    </button>
+                                </div>
+
+                                <div class="col-sm-6 text-center">
+                                    <button class="btn btn-danger" ng-click="reset()">
+                                        <span class="glyphicon glyphicon-off"></span> Annulla
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="loginPage panel panel-body" ng-show="cambiaPassword">
+                    <div class="col-sm-12 form-group">
+                        <div class="col-sm-3">
+                            <div class="text-center">
+                                <img src="img/parametri.jpg" class="logoPage img-rounded" ng-click="mainBack()" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div>
+                                <h3 class="text-center">Cambia Password</h3>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="text-center">
+                                <img src="img/icons/keyPass.png" class="logoPrivacy img-responsive center-block" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        <div class="center-block">
+                            <div class="col-sm-12">
+
+                                <!--<div class="div_tabella col-sm-3"></div>-->
+
+                                <div class="col-sm-12 form-group">
+
+                                    <!-- Old Password fa fa-envelope-o fa-fw -->       
+                                    <div class="form-group row" ng-show="attuale">
+                                        <label for="oldPass" class="control-label col-sm-3">Attuale:</label>
+                                        <div class="col-sm-6 input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                            <input type="password"  class="input-md verificaPass form-control" id="oldPass"   name="oldPass" ng-model="oldPass" required  placeholder="password attuale" />                               
+                                        </div>
+                                    </div>
+                        
+                                    <!-- New Password fa fa-envelope-o fa-fw -->       
+                                    <div class="form-group" ng-show="!attuale">
+                                        <label for="newPass" class="control-label col-sm-3">Nuova:</label>
+                                        <div class="col-sm-9 input-group">
+                                            <div class="col-sm-8 input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                                <input type="password"  class="input-md verificaPass form-control" id="newPass"   name="newPass" ng-model="newPass" ng-minlength="8" required placeholder="nuova password" />
+                                                <span class="input-group-addon" ng-show="testOK && !formPassword.newPass.$invalid"><i class="glyphicon glyphicon-thumbs-up"></i></span>
+                                            </div>
+                                            <div class="col-sm-4 input-group">
+                                                <span class="input-group-addon" ng-show="formPassword.newPass.$invalid"><i class="glyphicon glyphicon-remove"></i></span>
+                                                <span class="input-group-addon" ng-show="formPassword.newPass.$invalid">Minimo 8 caratteri</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Again Password fa fa-envelope-o fa-fw -->       
+                                    <div class="form-group" ng-show="!attuale && !formPassword.newPass.$invalid">
+                                        <label for="ripPass" class="control-label col-sm-3">Ripeti:</label>
+                                        <div class="col-sm-9 input-group">
+                                            <div class="col-sm-8 input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                                <input type="password"  class="input-md verificaPass form-control" id="ripPass"   name="ripPass" ng-model="ripPass" ng-minlength="8" placeholder="ripeti nuova password" required/>                              
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!--<div class="div_tabella col-sm-3"></div>-->
+
+                                <!-- Button Reset Password-->
+                                <div class="l50">
+                                    <div class="col-sm-12 center-block" >
+                                        <div class="form-group center-block col-sm-6" ng-show="attuale">
+                                            <p class="text-center" >
+                                                <button class="btn btn-success" ng-disabled="formPassword.oldPass.$invalid" ng-click="verificaPassword()">
+                                                    <span class="glyphicon glyphicon-check"></span> Verifica
+                                                </button>
+                                            </p>
+                                        </div>
+
+                                        <div class="form-group center-block col-sm-6" ng-show="!attuale">
+                                            <p class="text-center" >
+                                                <button class="btn btn-success" ng-disabled="formPassword.ripPass.$invalid || ripPass != newPass" ng-click="aggiornaPassword()">
+                                                    <span class="glyphicon glyphicon-play"></span> Aggiorna
+                                                </button>
+                                            </p>
+                                        </div>
+
+                                        <div class="form-group center-block col-sm-6">
+                                            <p class="text-center" >
+                                                <button class="btn btn-danger" ng-click="annulla()">
+                                                    <span class="glyphicon glyphicon-remove"></span> Annulla
+                                                </button>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+     
+</section>

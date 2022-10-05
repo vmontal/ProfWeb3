@@ -1,0 +1,12 @@
+{
+"pf_parStatusOfferte":
+	[
+	{"idStatusOfferta":"1","statusOfferta":"In attesa...",           "wfOfferta": "1"},
+	{"idStatusOfferta":"2","statusOfferta":"Prenotata",              "wfOfferta": "12"},
+	{"idStatusOfferta":"3","statusOfferta":"Erogata",                "wfOfferta": "2"},
+	{"idStatusOfferta":"4","statusOfferta":"Annullata da Studente",  "wfOfferta": "2"},
+	{"idStatusOfferta":"5","statusOfferta":"Annullata da Professore","wfOfferta": "12"},
+	{"idStatusOfferta":"6","statusOfferta":"Annullata da Segreteria","wfOfferta": "12"},
+	{"idStatusOfferta":"7","statusOfferta":"Assente",                "wfOfferta": "2"}
+	]
+}

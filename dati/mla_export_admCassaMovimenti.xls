@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:html="http://www.w3.org/TR/REC-html40"
+xmlns:x2="http://schemas.microsoft.com/office/excel/2003/xml">
+<DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+<Author>myLittleAdmin</Author>
+</DocumentProperties>
+<Styles>
+ <Style ss:ID="Default" ss:Name="Normal">
+ <Alignment ss:Vertical="Bottom"/>
+ <Borders/>
+ <Font/>
+ <Interior/>
+ <NumberFormat/>
+ <Protection/>
+ </Style>
+ <Style ss:ID="BoldColumn">
+ <Font x:Family="Swiss" ss:Bold="1"/>
+ </Style>
+ <Style     ss:ID="StringLiteral">
+ <NumberFormat ss:Format="@"/>
+ </Style>
+ <Style ss:ID="Decimal">
+ <NumberFormat ss:Format="0.0000"/>
+ </Style>
+ <Style ss:ID="Integer">
+ <NumberFormat ss:Format="0"/>
+ </Style>
+ <Style ss:ID="DateLiteral">
+ <NumberFormat ss:Format="mm/dd/yyyy;@"/>
+ </Style>
+ </Styles>
+ <Worksheet ss:Name="Sheet1"><Table><Row><Cell ss:StyleID="BoldColumn"><Data ss:Type="String">id</Data></Cell><Cell ss:StyleID="BoldColumn"><Data ss:Type="String">idCausale</Data></Cell><Cell ss:StyleID="BoldColumn"><Data ss:Type="String">idUtente</Data></Cell><Cell ss:StyleID="BoldColumn"><Data ss:Type="String">data</Data></Cell><Cell ss:StyleID="BoldColumn"><Data ss:Type="String">importo</Data></Cell><Cell ss:StyleID="BoldColumn"><Data ss:Type="String">codiceFiscaleSoggetto</Data></Cell><Cell ss:StyleID="BoldColumn"><Data ss:Type="String">nominativoSoggetto</Data></Cell><Cell ss:StyleID="BoldColumn"><Data ss:Type="String">deleted</Data></Cell></Row><Row><Cell ss:StyleID="Integer"><Data ss:Type="Number">1</Data></Cell><Cell ss:StyleID="Integer"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="Integer"><Data ss:Type="Number">188</Data></Cell><Cell ss:StyleID="DateLiteral"><Data ss:Type="DateTime">2020-01-08T00:00:00.000</Data></Cell><Cell ss:StyleID="Decimal"><Data ss:Type="Number">10,0000</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">MCRGRL01R13G273S</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">MACRÌ GABRIELE</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">False</Data></Cell></Row><Row><Cell ss:StyleID="Integer"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="Integer"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="Integer"><Data ss:Type="Number">191</Data></Cell><Cell ss:StyleID="DateLiteral"><Data ss:Type="DateTime">2020-01-08T00:00:00.000</Data></Cell><Cell ss:StyleID="Decimal"><Data ss:Type="Number">10,0000</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">CSTPTR68B65G273U</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">COSTANTINO PIETRA</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">False</Data></Cell></Row><Row><Cell ss:StyleID="Integer"><Data ss:Type="Number">3</Data></Cell><Cell ss:StyleID="Integer"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="Integer"><Data ss:Type="Number">189</Data></Cell><Cell ss:StyleID="DateLiteral"><Data ss:Type="DateTime">2020-01-08T00:00:00.000</Data></Cell><Cell ss:StyleID="Decimal"><Data ss:Type="Number">10,0000</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">PZZLDN66C65G273W</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">PEZZINO LOREDANA</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">False</Data></Cell></Row><Row><Cell ss:StyleID="Integer"><Data ss:Type="Number">4</Data></Cell><Cell ss:StyleID="Integer"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="Integer"><Data ss:Type="Number">190</Data></Cell><Cell ss:StyleID="DateLiteral"><Data ss:Type="DateTime">2020-01-10T00:00:00.000</Data></Cell><Cell ss:StyleID="Decimal"><Data ss:Type="Number">10,0000</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">CCRNNN67E02G273J</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">ACCARDI ANTONINO</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">False</Data></Cell></Row><Row><Cell ss:StyleID="Integer"><Data ss:Type="Number">5</Data></Cell><Cell ss:StyleID="Integer"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="Integer"><Data ss:Type="Number">98</Data></Cell><Cell ss:StyleID="DateLiteral"><Data ss:Type="DateTime">2020-01-14T00:00:00.000</Data></Cell><Cell ss:StyleID="Decimal"><Data ss:Type="Number">10,0000</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">SCHNLM62M44E974T</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">SECHI ANGELA MARIA</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">False</Data></Cell></Row><Row><Cell ss:StyleID="Integer"><Data ss:Type="Number">6</Data></Cell><Cell ss:StyleID="Integer"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="Integer"><Data ss:Type="Number">15</Data></Cell><Cell ss:StyleID="DateLiteral"><Data ss:Type="DateTime">2020-01-14T00:00:00.000</Data></Cell><Cell ss:StyleID="Decimal"><Data ss:Type="Number">10,0000</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">CRDGLM76A10G273Y</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">CARDACI GIROLAMO</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">False</Data></Cell></Row><Row><Cell ss:StyleID="Integer"><Data ss:Type="Number">7</Data></Cell><Cell ss:StyleID="Integer"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="Integer"><Data ss:Type="Number">193</Data></Cell><Cell ss:StyleID="DateLiteral"><Data ss:Type="DateTime">2020-01-14T00:00:00.000</Data></Cell><Cell ss:StyleID="Decimal"><Data ss:Type="Number">10,0000</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">LBNLCU70D61B428S</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">LO BIANCO LUCIA</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">False</Data></Cell></Row><Row><Cell ss:StyleID="Integer"><Data ss:Type="Number">8</Data></Cell><Cell ss:StyleID="Integer"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="Integer"><Data ss:Type="Number">186</Data></Cell><Cell ss:StyleID="DateLiteral"><Data ss:Type="DateTime">2020-01-17T00:00:00.000</Data></Cell><Cell ss:StyleID="Decimal"><Data ss:Type="Number">10,0000</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">MTAGPP71S02L319F</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">AMATO GIUSEPPE</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">False</Data></Cell></Row><Row><Cell ss:StyleID="Integer"><Data ss:Type="Number">9</Data></Cell><Cell ss:StyleID="Integer"><Data ss:Type="Number">2</Data></Cell><Cell ss:StyleID="Integer"><Data ss:Type="Number">196</Data></Cell><Cell ss:StyleID="DateLiteral"><Data ss:Type="DateTime">2020-01-17T00:00:00.000</Data></Cell><Cell ss:StyleID="Decimal"><Data ss:Type="Number">10,0000</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">BNMMSM73T05G273J</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">BONOMO MASSIMILIANO</Data></Cell><Cell ss:StyleID="StringLiteral"><Data ss:Type="String">False</Data></Cell></Row></Table> </Worksheet></Workbook>

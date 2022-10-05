@@ -1,0 +1,226 @@
+﻿<section id="schedaLezioni" class="panel-transparent" style="display:none">
+
+    <div class="panel-transparent">
+                      
+		<header id="hLezioni" class="col-sm-12 panel" >
+
+            <div class="block-center col-sm-1">
+                <img class="img-rounded img-responsive logoImg" src="img/logo/logoPortofranco2019.png"  ng-click="mainBack()"/>
+                <!--<p class="text-center"><strong>Lezioni</strong></p>-->    
+            </div>
+
+            <div class="block-center col-sm-10">
+                <h3 class="text-center">Portofranco Palermo</h3>
+                <h5 class="text-center">Sede di: {{luogo}}</h5>
+            </div>
+
+            <div class="block-center col-sm-1 noSmart">
+                <!--<img class="img-rounded img-responsive logoImg" src="img/icons/hom  e_page.png"  ng-click="mainBack()"/>--> 
+            </div>
+
+		</header>
+
+        <form name="formLezioni" class="form-vertical" novalidate>
+                                           
+            <div id="divLezione" class="container">
+                <div class="row">
+
+                    <div id="tabellaLezioni" class="col-sm-12 panel panel-default table-container" ng-show="!schedaLez">            
+
+                    </div>
+
+                    <div class="col-sm-12 panel panel-default" ng-show="schedaLez" >
+
+                        <div class="col-sm-12" >
+
+                            <!-- id Offerta -->       
+                            <div class="form-group" style="display:none">
+                                <label for="idOfferta" class="control-label col-sm-3">id Offerta:</label>
+                                <div class="col-sm-3 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" id="idOfferta" class="input-md form-control"  name="idOfferta" ng-model="idOfferta" ng-disabled="never" readonly="true" />                               
+                                </div>
+                            </div>
+
+                            <!-- id Lezione -->       
+                            <div class="form-group" style="display:none">
+                                <label for="idLezione" class="control-label col-sm-3">id Lezione:</label>
+                                <div class="col-sm-3 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" id="idLezione" class="input-md form-control"  name="idLezione" ng-model="idLezione" ng-disabled="never" readonly="true" />                               
+                                </div>
+                            </div>
+
+                            <!-- id Professore -->       
+                            <div class="form-group" style="display:none">
+                                <label for="idProfessore" class="control-label col-sm-3">id Professore:</label>
+                                <div class="col-sm-3 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" id="idProfessore" class="input-md form-control"  name="idProfessore" ng-model="idProfessore" ng-disabled="never"  readonly="true" />                               
+                                </div>
+                            </div>
+
+                            <!-- id Materia -->       
+                            <div class="form-group" style="display:none">
+                                <label for="idMateria" class="control-label col-sm-3">id Materia:</label>
+                                <div class="col-sm-3 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" id="idMateria" class="input-md form-control"  name="idMateria" ng-model="idMateria" ng-disabled="never"  readonly="true" />                               
+                                </div>
+                            </div>
+
+                            <!-- id Orario -->       
+                            <div class="form-group" style="display:none">
+                                <label for="idOrario" class="control-label col-sm-3">id Orario:</label>
+                                <div class="col-sm-3 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" id="idOrario" class="input-md form-control"  name="idOrario" ng-model="idOrario" ng-disabled="never"readonly="true" />                               
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-12">
+
+                                <!-- dataOfferta-->
+                                <div class="form-group col-sm-5">    
+                                    <label  for="dataOffertaGMA" class="control-label col-sm-3">Data:</label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                        <input type="text" id="dataOffertaGMA" class="input-md form-control"  name="dataOffertaGMA" ng-model="dataOffertaGMA" readonly="true" />                               
+                                    </div>
+                                </div>
+
+                                <!-- Orario-->
+                                <div class="form-group col-sm-5">    
+                                    <!--<label  for="orario" class="control-label col-sm-3">Orario:</label>-->
+                                    <div class="col-sm-10 input-group">
+                                        <!--<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>-->
+                                        <input type="text" id="orario" class="input-md form-control"  name="orario" ng-model="orario" readonly="true" />                               
+                                        <!--<select class="form-control" id="idOrario" name="idOrario" ng-model="idOrario"  ng-disabled="never" ng-change="cambia=true" required>
+                                            <option ng-repeat="item in elencoOrari" value={{item.idOrario}}>{{item.orario}}</option>
+                                        </select>-->
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-12">
+                                <!-- Docente-->
+                                <div class="form-group col-sm-5">    
+                                    <label  for="nomeProf" class="control-label col-sm-3">Docente:</label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                        <input type="text" id="nomeProf" class="input-md form-control"  name="nomeProf" ng-model="nomeProf" readonly="true" />                               
+                                        <!--<select class="form-control" id="idProfessore" name="idProfessore" ng-model="idProfessore"  ng-disabled="never" ng-change="cambia=true" required>
+                                            <option ng-repeat="item in elencoProfessori" value={{item.idProfessore}}>{{item.nomeProf}}</option>
+                                        </select>-->
+                                    </div>
+                                </div>
+
+                                <!-- Materia-->
+                                <div class="form-group col-sm-5">    
+                                    <!--<label  for="materia" class="control-label col-sm-3">Materia:</label>-->
+                                    <div class="col-sm-10 input-group">
+                                        <!--<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>-->
+                                        <input type="text" id="materia" class="input-md form-control"  name="materia" ng-model="materia" readonly="true" />                               
+                                        <!--<select class="form-control" id="idMateria" name="idMateria" ng-model="idMateria"  ng-disabled="never" ng-change="cambia=true" required>
+                                            <option ng-repeat="item in elencoMaterie" value={{item.idMateria}}>{{item.materia}}</option>
+                                        </select>-->
+                                    </div>
+                                </div>
+
+                                <!-- Anni -->       
+                                <div class="form-group col-sm-2">
+                                    <label for="anni" class="control-label col-sm-5">Anni:</label>
+                                    <div class="col-sm-7 input-group">
+                                        <!--<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>-->
+                                        <input type="text" id="anni" class="input-md form-control text-center"  name="anni" ng-model="anni" readonly="true" />                               
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-12">
+                                <!-- Studente -->       
+                                <div class="form-group col-sm-5">
+                                    <label for="idStudente" class="control-label col-sm-3">Studente:</label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                        <input type="text" id="nomeStud" class="input-md form-control"  name="nomeStud" ng-model="nomeStud" ng-disabled="never" readonly="true" />                               
+                                        <!--<select class="form-control" id="idStudente" name="idStudente" ng-model="idStudente"  ng-disabled="erogata"  ng-change="offertaCheck()" >
+                                            <option ng-repeat="item in elencoStudenti" value={{item.idStudente}}>{{item.nomeStud}}</option>
+                                        </select>-->
+                                    </div>
+                                </div>
+
+                                <!-- Tipo istituto -->       
+                                <div class="form-group col-sm-5">
+                                    <!--<label for="idStudente" class="control-label col-sm-3">Studente:</label>-->
+                                    <div class="col-sm-10 input-group">
+                                        <!--<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>-->
+                                        <input type="text" id="istitutoTipo" class="input-md form-control"  name="istitutoTipo" ng-model="istitutoTipo" readonly="true" />                               
+                                        <!--<select class="form-control" id="Select1" name="idStudente" ng-model="idStudente"  ng-disabled="erogata"  ng-change="offertaCheck()" >
+                                            <option ng-repeat="item in elencoStudenti" value={{item.idStudente}}>{{item.nomeStud}}</option>
+                                        </select>-->
+                                    </div>   
+                                </div>
+
+                                <!-- Anni -->       
+                                <div class="form-group col-sm-2">
+                                    <label for="anno" class="control-label col-sm-5">Anno:</label>
+                                    <div class="col-sm-7 input-group">
+                                        <!--<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>-->
+                                        <input type="text" id="anno" class="input-md form-control text-center"  name="anno" ng-model="anno" ng-disabled="never" readonly="true" />                               
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-12">
+                                <!-- Stato -->       
+                                <div class="form-group col-sm-5">
+                                    <label for="idStatusOfferta" class="control-label col-sm-3">Stato:</label>
+                                    <div class="col-sm-9 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                        <input type="text" id="statusOfferta" class="input-md form-control"  name="statusOfferta" ng-model="statusOfferta" ng-disabled="never" readonly="true" />                               
+                                        <!--<select class="form-control" id="idStatusOfferta" name="idStatusOfferta" ng-model="idStatusOfferta"  ng-disabled="erogata" ng-change="offertaCheck()" >
+                                            <option ng-repeat="item in statusOfferte" value={{item.idStatusOfferta}}>{{item.statusOfferta}}</option>
+                                        </select>-->
+                                    </div>
+                                </div>
+
+                                <!-- Nota -->       
+                                <div class="form-group col-sm-7">
+                                    <!--<label for="notaOfferta" class="control-label col-sm-3">Note:</label>-->
+                                    <div class="col-sm-12 input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                        <textarea id="notaOfferta" class="input-md form-control"  name="notaOfferta" ng-model="notaOfferta" rows="5" ng-disabled="never" readonly />                               
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Attivo --> 
+                            <!--<div class="col-sm-12" ng-show="(modifica && gestioneAttiva) || anagrafeNuovo" >
+                                <div class="col-sm-12 panel-heading">      
+                                    <div class="form-group">
+                                        <label for="Attivo" class="control-label col-sm-1">Attivo:</label>
+                                        <div class="col-sm-1 input-group">
+                                            <input type="checkbox" id="Attivo" class="input-md form-control"  name="Attivo" ng-model="anagrafeAttivo"/>                               
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>-->
+
+                        </div>
+                                                       
+                    </div>
+
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+</section>

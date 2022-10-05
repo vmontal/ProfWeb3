@@ -1,0 +1,5 @@
+{"send": [
+	"whatsapp": "https://api.whatsapp.com/send?phone=393488212068&text=I'm%20interested%20in%20your%20car%20for%20sale",
+	"sms": "393488212068"
+	]
+}

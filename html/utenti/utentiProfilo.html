@@ -1,0 +1,325 @@
+﻿<section id="profilo" class="container panel-transparent">
+
+    <div class="col-sm-12">
+
+        <header class="panel panel-body well">  
+            <div class="col-sm-12 form-group">
+                <div class="col-sm-3">
+                    <div class="text-center">
+                        <img ng-src="{{path}}assId{{idRS}}.jpg?ver={{versione}}" class="img-rounded img-responsive sedeImg" ng-click="mainBack()"/>                        
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div>
+                        <h3 class="text-center">Sistema PROF</h3>
+                        <p class="text-center">Profilo Utenti</p>
+                        <p id="h_profilo" class="loginAccedi text-center"></p>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="text-center">
+                        <img src="img/icons/newUser.png" class="logoPage" />
+                    </div>
+                </div>
+            </div>
+                        
+        </header>
+        
+        <form name="formUtente" ng-show="updateFormUtente" novalidate>
+            <!--Form Utente class="panel-body well"-->
+            <div class="col-sm-12">
+
+                <div class="col-sm-12 div_tabella panel-body well">
+                    <div class="col-sm-12">
+                        <div class="col-sm-6">
+
+                            <!-- Cognome -->
+                            <div class="form-group">
+                                <label for="cognome" class="control-label col-sm-3">Cognome:</label>
+                                <div class="col-sm-8 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" class="input-md form-control userData" id="cognome" name="cognome" ng-model="cognome" placeholder="Cognome" required />
+                                </div>
+                            </div>
+
+                            <!-- Nome -->
+                            <div class="form-group">
+                                <label for="nome" class="control-label col-sm-3">Nome:</label>
+                                <div class="col-sm-8 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" class="input-md form-control userData" id="nome" name="nome" ng-model="nome" placeholder="Nome" required />
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="form-group">
+                                <label for="email" class="control-label col-sm-3">Email:</label>
+                                <div class="col-sm-8 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                    <input type="email" class="input-md form-control userData" id="email" name="email" ng-model="email" placeholder="email: username@dominio.xx" required />
+                                </div>
+                            </div>
+
+                            <!-- Username ng-show="attivaUtente"-->
+                            <div class="form-group" >
+                                <label for="email" class="control-label col-sm-3">Username:</label>
+                                <div class="col-sm-8 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                    <input type="text" class="input-md form-control" id="username" name="username" placeholder="username" readonly="true" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-6">
+
+                            <!-- Data Registrazione -->
+                            <div class="form-group">
+                                <label for="registra" class="control-label col-sm-3">Registrato:</label>
+                                <div class="col-sm-8 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    <input type="text" class="input-md form-control" id="registra" name="registra"  readonly="true" />
+                                </div>
+                            </div>
+
+                            <!-- Data Ultimo Accesso  ng-show="attivaUtente"-->
+                            <div class="form-group">
+                                <label for="ultimo" class="control-label col-sm-3">Ultimo Accesso:</label>
+                                <div class="col-sm-8 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    <input type="text" class="input-md form-control" id="ultimo" name="ultimo"  readonly="true" />
+                                </div>
+                            </div>
+
+                            <!-- Ruolo  ng-show="attivaUtente"-->
+                            <div class="form-group" ng-show="userLogged">
+                                <label for="idRuolo" class="control-label col-sm-3">Ruolo:</label>
+                                <div class="col-sm-8 input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-king"></i></span>
+                                    <select id="idRuolo" class="form-control profilo" ng-disabled="!admin">
+                                        <option ng-repeat="ruoli in dropRuoli" value="{{ruoli.idRuolo}}">{{ruoli.ruolo}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-12">
+                            <!-- Attivo -->
+                            <div class="form-group" ng-show="admin"> <!--ng-show="attivaUtente"-->
+                                <label for="attivo" class="control-label col-sm-5">Attivo:</label>
+                                <div class="col-sm-2 input-group">
+                                    <!--<span class="input-group-addon"><i class="glyphicon glyphicon-ok-sign"></i></span>-->
+                                    <input type="checkbox"  class="input-md form-control" id="attivo"   name="attivo" ng-model="attivo" ng-disabled="!admin" /> 
+                                    <!--<select id="attivo" class="input-md form-control" ng-disabled="!admin">
+                                        <option value="0">Falso</option>
+                                        <option value="1">Vero</option>
+                                    </select>-->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-12">
+
+                        <!--<div class="form-group col-sm-12">
+                            <h3>{{dropPrivacy.informativa.title}}</h3>
+                            <div class="panel col-sm-12 divPrivacy">                                
+                                {{dropPrivacy.informativa.text}}
+                                ...
+                            </div>
+                            <br />
+                            <a href="http://portofrancopa.wixsite.com/social" target="_blank" ><strong>Leggi tutto ...</strong></a><span><em>apre una nuova finestra</em></span>
+                        </div>-->
+
+                        <div class="form-group col-sm-12">                              
+                            <div class="form-group col-sm-6">
+                                <p><strong>{{dropPrivacy.trattamento.title}}</strong></p>
+                                <div class="panel col-sm-12 divPrivacy">   
+                                    {{dropPrivacy.trattamento.text}}
+                                </div>
+                            </div>
+                              
+                            <div class="form-group col-sm-6">
+                                <p><strong>{{dropPrivacy.informativa.title}}</strong></p>
+                                <div class="panel col-sm-12 divPrivacy">   
+                                    {{dropPrivacy.informativa.text}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-12">
+                            <div class="col-sm-6">
+                                <label for="privacy" class="control-label col-sm-6">Do il consenso:</label>
+                                <div class="col-sm-1 input-group">
+                                    <!--<span class="input-group-addon"><i class="glyphicon glyphicon-ok-circle"></i></span>-->
+                                    <input type="checkbox"  class="input-md form-control" id="privacy"   name="privacy" ng-model="privacy" ng-change="adv=false" />                                
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6" ng-show="privacy">
+                                <label for="adv" class="control-label col-sm-6">Do il consenso:</label>
+                                <div class="col-sm-1 input-group">
+                                    <!--<span class="input-group-addon"><i class="glyphicon glyphicon-ok-circle"></i></span>-->
+                                    <input type="checkbox"  class="input-md form-control" id="adv"   name="adv" ng-model="adv" />                                
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Button Form Utente panel-footer-->
+                <footer class="col-sm-12 div_tabella panel-body well">
+                    <div class="col-sm-12 center-block">
+                        <div class="form-group center-block col-sm-4">
+                            <p class="text-center">
+                                <button id="salva" class="btn btn-success" ng-click="conferma()" ng-show="(privacy && nuovoUtente) || (userLogged && !updatePrivacy) || (privacy && updatePrivacy)" ng-disabled="formUtente.cognome.$invalid || formUtente.nome.$invalid || formUtente.email.$invalid">
+                                    <span class="glyphicon glyphicon-saved"></span>Salva
+                                </button>
+                            </p>
+                        </div>
+
+                        <div class="form-group center-block col-sm-4">
+                            <p class="text-center">
+                                <button id="cambiaPass" class="btn btn-success" ng-click="cambiaPass()" ng-hide="nuovoUtente">
+                                    <span class="glyphicon glyphicon-refresh"></span>Reset Password
+                                </button>
+                            </p>
+                        </div>
+
+                        <div class="form-group center-block col-sm-4">
+                            <p class="text-center">
+                                <button id="annulla" class="btn btn-danger" ng-click="annulla()">
+                                    <span class="glyphicon glyphicon-remove"></span>Chiudi
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                </footer>
+            
+            </div>
+        </form>
+
+        <form name="formPassword" ng-show="resetFormPassword" novalidate>
+            <!-- Reset Password -->
+            <div class="col-sm-12">
+
+                <div class="div_tabella col-sm-3"></div>
+
+                <div class="col-sm-6 div_tabella panel-body well">
+
+                    <!-- Old Password fa fa-envelope-o fa-fw -->       
+                    <div class="form-group row" ng-show="attuale">
+                        <label for="oldPass" class="control-label col-sm-3">Attuale:</label>
+                        <div class="col-sm-6 input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input type="password"  class="input-md verificaPass form-control" id="oldPass"   name="oldPass" ng-model="oldPass" required  placeholder="password attuale" />                               
+                        </div>
+                    </div>
+                        
+                    <!-- New Password fa fa-envelope-o fa-fw -->       
+                    <div class="form-group" ng-show="!attuale">
+                        <label for="newPass" class="control-label col-sm-3">Nuova:</label>
+                        <div class="col-sm-9 input-group">
+                            <div class="col-sm-8 input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input type="password"  class="input-md verificaPass form-control" id="newPass"   name="newPass" ng-model="newPass" ng-minlength="8" required placeholder="nuova password" />
+                                <span class="input-group-addon" ng-show="testOK && !formPassword.newPass.$invalid"><i class="glyphicon glyphicon-thumbs-up"></i></span>
+                            </div>
+                            <div class="col-sm-4 input-group">
+                                <span class="input-group-addon" ng-show="formPassword.newPass.$invalid"><i class="glyphicon glyphicon-remove"></i></span>
+                                <span class="input-group-addon" ng-show="formPassword.newPass.$invalid">Minimo 8 caratteri</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Again Password fa fa-envelope-o fa-fw -->       
+                    <div class="form-group" ng-show="!attuale && !formPassword.newPass.$invalid">
+                        <label for="ripPass" class="control-label col-sm-3">Ripeti:</label>
+                        <div class="col-sm-9 input-group">
+                            <div class="col-sm-8 input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input type="password"  class="input-md verificaPass form-control" id="ripPass"   name="ripPass" ng-model="ripPass" ng-minlength="8" placeholder="ripeti nuova password" required/>                              
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="div_tabella col-sm-3"></div>
+
+                <!-- Button Reset Password-->
+                <footer class="l50">
+                    <div class="col-sm-12 center-block" >
+                        <div class="form-group center-block col-sm-6" ng-show="attuale">
+                            <p class="text-center" >
+                                <button class="btn btn-success" ng-disabled="formPassword.oldPass.$invalid" ng-click="verificaPassword()">
+                                    <span class="glyphicon glyphicon-check"></span> Verifica
+                                </button>
+                            </p>
+                        </div>
+
+                        <div class="form-group center-block col-sm-6" ng-show="!attuale">
+                            <p class="text-center" >
+                                <button class="btn btn-success" ng-disabled="formPassword.ripPass.$invalid || ripPass != newPass" ng-click="aggiornaPassword()">
+                                    <span class="glyphicon glyphicon-play"></span> Aggiorna
+                                </button>
+                            </p>
+                        </div>
+
+                        <div class="form-group center-block col-sm-6">
+                            <p class="text-center" >
+                                <button class="btn btn-danger" ng-click="annulla()">
+                                    <span class="glyphicon glyphicon-remove"></span> Annulla
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                </footer>
+
+            </div>
+        </form>
+            
+        <form name="formAnnullaPassword" ng-show="resetAnnullaPassword" novalidate>
+            <!-- Annulla Password da Pannello Amministratore-->
+            <div class="col-sm-12">
+
+                <div class="col-sm-3"></div>
+
+                <div class="col-sm-6 div_tavella panel-body well">
+                    <p id="textReset" class="T2"></p>
+                </div>
+
+                <div class="col-sm-3"></div>
+
+                <!-- Button Annulla Password  <span class="glyphicon glyphicon-ok"></span>-->
+                <footer class="l50">
+                    <div class="col-sm-12 center-block">
+                        <div class="form-group center-block col-sm-6">
+                            <p class="text-center" >
+                                <button id="resetPassword" class="btn btn-success" ng-click="resetPassword()">
+                                    <span class="glyphicon glyphicon-ok"></span> OK
+                                </button>
+                            </p>
+                        </div>
+
+                        <div class="form-group center-block col-sm-6">
+                            <p class="text-center" >
+                                <button id="annullaChiudi" class="btn btn-danger" ng-click="annulla()">
+                                    <span class="glyphicon glyphicon-remove"></span> Annulla
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </form>      
+                        
+    </div>
+
+</section>

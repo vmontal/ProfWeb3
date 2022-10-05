@@ -1,0 +1,16 @@
+Inizio anno
+1) Aggiornare tabella Festività pf_parFestiviUpdate
+2) Modificare il file \dati\json\parametri.json
+3) Svuotare la tabella pf_parLezioni
+4) Svuotare la tabella pf_parOfferte
+5) Aggiornare Flag attivo=0 per studenti e professori
+6) Aggiornare Flag impegno per tabella Orari
+--  pf_resetInizioAnno (punti 3,4,5,6)
+
+Gestione Sabato e Sesta ora
+Aggiornare pf_parOre e pf_parOrari
+Aggiornare pf_parOrdinali (aggiungere 6, Sesta)
+Modificare pf_OrariVistaPivot, pf_lezioniVistaPivot, pf_pianoLezioniRead
+
+
+

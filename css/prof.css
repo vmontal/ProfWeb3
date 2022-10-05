@@ -1,0 +1,655 @@
+﻿/*tengo conto anche dei bordi nel calcolo della grandezza degli elementi*/
+* {
+    box-sizing:border-box;
+    font-family: 'Segoe UI', 'Arial Rounded MT', Verdana;
+    font-size:14px;
+}
+
+body {
+    /*background-image:url("/img/logo/logoPortofrancoVettoriale.png");*/
+    /*background-repeat:no-repeat;*/
+    /*background-color: antiquewhite;*/
+    /*background-size:90rem;*/
+    /*background-position:top;*/
+    /*background-position-x: 1rem;*/
+    /*background-position-y: 1rem;*/
+    /*font-family: 'Segoe UI', Verdana, Arial;*/
+    /*background-color:aliceblue;*/
+    /*margin: 1rem;*/
+    position:relative;
+    margin-bottom: 18rem;
+    /*overflow-x: hidden;*/
+    /*overflow-y:hidden;*/
+    overflow-y:scroll;
+}
+
+section {
+    /*margin:10px 0;*/
+    /*position:absolute;*/
+}
+
+.reset {
+    color:black;
+    font-size:10px;
+    list-style-type:none;
+    text-align:center;
+    font-variant-alternates: ruby;
+}
+
+    .reset:hover {
+        color:red;
+        font-weight:bold;
+    }
+
+.l25 {
+    width:25%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.div_tabella {
+    width:100%;
+    margin-top:1%;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    border-radius:5px;
+}
+
+.head {
+    display:block;
+    min-height: 10px;
+    background-color:#ddd;
+    border:thin;
+    border-color:yellowgreen;
+    border-style:solid;
+}
+
+/*.mainPageLogo {
+    left:1rem;
+    top: 1rem;
+}*/
+
+.mainPage {
+    margin:5px auto;
+}
+
+.mainMenu {
+    margin: 20px auto;
+    border:1px solid #6675c7;
+    border-radius:4px;
+}
+
+.master {
+    position: relative;
+    z-index: 1;
+}
+
+.slave {
+    position: relative;
+    z-index: 9;
+    display: block;
+    border-radius: 1rem;
+    background-color: rgba(134, 134, 128, 0.3);
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+    .slave p {
+        margin: 0;
+        padding: 0;
+        color: white;
+        font-weight: bolder;
+        font-size: x-large;
+    }
+
+.mainSez {
+    /*position: relative;
+    z-index: 1;*/
+    margin: 10% auto;
+    /*background-color: darkgray;*/
+    border-radius: 1rem;
+    padding: 0;
+    font-size: 2rem;
+    text-align: center;
+    color: white;
+    /*border: solid;*/
+    /*border-color: #ddd;*/
+    min-height: 150px;
+    opacity: 0.6;
+    /*background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;*/
+}
+    .mainSez:hover {
+        opacity:0.9;
+    }
+    .mainSez p {
+        position:absolute;
+        z-index: 1;
+        bottom:0px;
+        opacity:0.9;
+        font-size: 2rem;
+        font-weight:600;
+        text-align:center;
+        color: black;  
+        /*background-color:#ddd;*/
+        width:100%;
+    }
+        .mainSez p:hover {
+            background-color: yellowgreen;
+            opacity: 0.9;
+        }
+
+.slaveSez {
+    position: absolute;
+    z-index: 9;
+    display: block;
+    border-radius: 1rem;
+    background-color: rgba(134, 134, 128, 0.8);
+    width: 100%;
+    height:100%;
+    top: 0;
+    left: 0;
+}
+
+.left {
+    float:left;
+    width: 15rem;
+    margin: 1rem;
+}
+
+.menu {
+    display:inline-block;
+    background-color:rgba(168, 196, 169, 0.5);
+    border-radius: 2rem;
+}
+
+.menuSede {
+    display: inline-block;
+    background-color: rgba(238, 238, 238, 0.8);
+    border-radius: 2rem;
+}
+.home {
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: contain;
+    border-radius:2rem;
+}
+
+#struttura {
+    background-image:url("/img/main/scuola1.jpg");
+}
+#personale {
+    background-image: url("/img/main/scuola2.jpg");
+}
+#organizza {
+    background-image: url("/img/main/scuola3.jpg");
+}
+#prenota {
+    background-image:url("/img/main/scuola4.jpg");
+}
+/*#lezioni {
+    background-image:url("/img/main/futuro4.jpg");
+}*/
+#controllo {
+    background-image:url("/img/main/snoopyFelice.jpg");
+}
+
+#hAnagrafe, #hPrenota, #hControllo {
+    position:fixed;
+    top:0;
+    left: 0;
+    background-color: rgba(124, 136, 14, 0.1);
+    z-index:99;
+}
+
+#divAnagrafe, #divPrenota, #divControllo, #pivotControllo, #frameControllo {
+    position: relative;
+    top:140px;
+    padding-top: 1rem;
+}
+#msgConnect{
+    font-size: 1.5rem;
+    font-style:oblique;
+    font-family:'Baskerville Old Face', Verdana;
+}
+
+.cellCheck {
+    height:50px;
+    font-size:2rem;
+    padding:1rem;
+    border-radius:1rem;
+}
+
+.divPrivacy {
+    padding:5px;
+    text-align:justify;
+}
+
+.logoPrivacy {
+    height: auto;
+}
+
+.fontStatus {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;        
+}
+
+.barMenu {
+    margin: 1px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bolder;
+    border-bottom: 2px solid rgba(25, 142, 221, 0.4);
+    background-color: rgba(25, 142, 221, 0.4);
+}
+
+    .barMenu:hover, .barMenu:focus, .barMenu:active,
+    .navMenu:hover, .navMenu:focus {
+        background-color: rgba(25, 142, 221, 1);
+        border-bottom: 2px solid rgba(254, 255, 25, 1);
+    }
+
+.barMenuCmd {
+    margin: 1px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bolder;
+    border-bottom: 2px solid rgba(144, 255, 142, 0.40);
+    background-color: rgba(221, 164, 25, 0.40);
+}
+
+    .barMenuCmd:hover, .barMenuCmd:focus, .barMenuCmd:active
+    {
+        background-color: rgba(221, 164, 25, 1);
+        border-bottom: 2px solid rgba(220, 255, 23, 1);
+    }
+		
+.activeSez {
+    background-color: darkgrey !important;
+    color: white !important;
+    border-bottom: 2px solid rgba(254, 128, 1, 1)!important;
+}
+.activeDay {
+    background-color: lightcyan;
+}
+.activeWork {
+    background-color: red;
+}
+.validaEmail {
+    color: white;
+    background-color: red!important;
+}
+.activeTab.ng-invalid  {
+    background-color: pink;
+}
+.activeTab.ng-valid {
+    background-color: lightgreen;
+}
+.backColorUscita {
+    background-color: deeppink;
+}
+
+.dataOffertaChange {
+    background-color: lightpink!important;
+}
+.table-container {
+    margin: 0 auto;
+    background-color:transparent;
+    box-shadow: 20px 20px 50px gray!important;
+    border-radius: 2rem;
+}
+.table-center {
+    /*text-align:center; non utilizzare con tabulator; mancato allineamento delle colonne con header*/
+    margin: 0;
+    background-color:transparent;
+    box-shadow: 20px 20px 50px gray!important;
+    border-radius:2rem;
+}
+.table-select {
+    padding-top:5px;
+    border-radius:5px;
+    background-color:transparent;
+}
+.table-orario {
+    border:1px solid #6675c7;
+}
+.div-check {
+    font-size:18px;
+    margin-top:10px;
+}
+.check-label {
+    padding-top:5%;
+    font-size:1.5rem;
+}
+.giorno {
+    padding-top: 5em;
+    padding-bottom:5em;
+}
+.icon {
+    position:absolute;
+    bottom: 12px;
+    right:2%;
+    max-height:20px;
+    margin:0, auto;
+    display:block;
+}
+
+.importoEntrata {
+    background-color: lightgreen;
+}
+
+.importoUscita {
+    background-color: red;
+}
+
+.alertAnno {
+    background-color: red!important;
+    color:white;
+    font-weight:bold;
+}
+.evidenzia {
+    font-weight:bold;
+    text-align:center;
+    background-color: whitesmoke!important;
+}
+    .evidenzia.cambia {
+        color: green!important;
+    }
+    .evidenzia.delete {
+        color:red!important;
+    }
+.riprogrammata {
+    font-weight:bold;
+    text-align:center;
+    color:yellow!important;
+    background-color: blue!important;    
+}
+.logoMenu {
+    width:15%;
+    height:auto;
+}
+.textMenu {
+    font-family: 'Berlin Sans FB', Verdana, Arial;
+}
+.logoImg {
+    /*max-width:10rem;*/
+    margin-left:auto;
+    margin-right:auto;
+}
+    .logoImg.verifica {
+        max-width:100px;
+    }
+
+.assImg {
+    height: 10rem;
+    margin:auto;
+}
+
+.assLogo {
+    height: 8rem;
+    margin:auto;
+}
+
+.assBlock{
+    width: 30rem;
+}
+
+.sedeImg {
+    height: 10rem;
+    /*margin-left:auto;
+    margin-right:auto;
+    */
+    opacity: 0.7;
+    margin: auto;
+}
+    .sedeImg:hover {
+        opacity:1;
+    }
+
+.sedeNome {
+    font-size: 1.5rem;
+    font-weight:bold;
+}
+.textRed {
+    color:hotpink;
+}
+#homeFooter {
+    position:fixed;
+    bottom:0px;
+    background-color:darkslategray;
+    /*width:99%;*/
+    z-index:99;
+}
+.headerRegistra {
+    position:fixed;
+    top:0px;
+    background-color:lightblue;
+    margin-bottom:20px;
+    z-index:99;
+}
+.bodyRegistra {
+    position:relative;
+    top:2rem;
+}
+.titleRegistra {
+    text-align:center;
+    font-size:3rem;
+    font-family:'Berlin Sans FB',Arial,Verdana;
+}
+.btnCommand {
+    display:inline-block;
+}
+.footerClass {
+    text-align:center;
+    /*font-family:'Berlin Sans FB', Verdana, Arial;*/
+    color:white;
+    font-size:1rem;
+    padding-top:2%;
+}
+#homeHeader {
+    position:fixed;
+    top:1%;
+    right:1%;
+    /*background-color: #677593!important;*/
+    background-color:transparent;
+    /*border: 1px solid gray;*/
+    box-shadow: 20px 20px 50px gray!important;
+    width:20%!important;
+    z-index:99;
+    text-align:right;
+    color:white;
+}
+
+.titoloSezione {
+    margin: 10px auto;
+    text-align:center;
+    font-size: x-large;
+    padding: 5px;
+    display:block;
+    border:1px solid darkgray;
+    border-radius:10px;
+    background-color:lightgray;
+    color:white;
+}
+#power {
+    position:absolute;
+    top:0;
+    border-radius: 0 0 8px 8px;
+    right: 1%;
+    width:60px;
+    background-color:lightslategray;
+    font-size: 1.2em;
+    text-align:center;
+    color: black;
+}
+#headerPrenota {
+    min-height:20px;
+}
+.login {
+    font-size: 0.8em;
+}
+.loginPage {
+    /*background-color:white;*/
+    border-radius: 5px;
+    border-color:white;
+    border-width: 1px;
+    box-shadow:0 0 5px 5px lightgray;
+    padding: 20px;
+    position: fixed;
+    left: 50%;
+    top: 0;
+    
+    -webkit-transform: translate(-50%, 5%);
+    transform: translate(-50%, 5%);
+}
+
+.loginAccedi {
+    font-size: 20px;
+    text-align:center;
+}
+
+.loginAccediTitle {
+    text-align:center;
+    font-weight:bold;
+}
+
+.logoPage {
+    width:10rem;
+}
+
+.inputText {
+    border-width: 3px;
+    border-radius: 3px;
+}
+
+.panel-transparent {
+    background: none;
+}
+
+.panel-transparent .panel-heading {
+    background: rgba(168, 196, 169, 0.28)!important;
+}
+
+.panel-transparent .panel-body {
+    background: rgba(198, 236, 206, 0.5)!important;
+}
+
+.panel-transparent .panel-footer {
+    background: rgba(246, 246, 246, 0.50)!important;
+}
+
+.titoli {
+    font-size: 2rem;
+    font-weight:bold;
+}
+
+[class*="labelAnni"] {
+    color: white;
+    display: block;
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 0.5rem;
+    padding: 0;
+    border-radius: 1rem;
+    text-align: center;
+    background-color: darkgray;
+    min-width: 12rem;
+}
+
+[class*="scegliAnno"] {
+    color: white;
+    display: block;
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 0.5rem;
+    padding: 0;
+    border-radius: 1rem;
+    text-align: center;
+    background-color: red;
+}
+
+    [class*="scegliAnno"].si {
+        background-color: green;
+    }
+
+[class*="labelFreq"] {
+    color: white;
+    display: block;
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 0.5rem;
+    padding: 0;
+    border-radius: 1rem;
+    text-align: center;
+    background-color: darkgray;
+    min-width: 12rem;
+}
+
+[class*="selectFreq"] {
+    color: white;
+    display: block;
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 0.5rem;
+    padding: 0;
+    border-radius: 1rem;
+    text-align: center;
+    background-color: green;
+}
+
+.tipoAss {
+    margin-bottom: 5rem;
+}
+#odgAss
+{
+    background-color: white;
+}
+
+@media screen and (max-width:768px) {
+    body {
+        /*overflow-y:hidden;*/
+    }
+    .registraPage {
+        width:40%;
+    }
+    .mainPageLogo {
+        margin:2rem;
+    }
+    .mainPage div {
+        padding:0px!important;
+        margin-left:0px;
+        margin-right:0px;
+    }
+    .mainSez {
+        min-height:75px;
+        min-width: 200px;
+        margin: 5px 0;
+    }
+    .mainSez p {
+        font-size:1.6rem;
+    }
+    .icon {
+        height:80%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #homeFooter {
+        display:none;
+    }
+    .noSmart {
+        display:none;
+    }
+    #divAnagrafe, #divPrenota{
+    position: relative;
+    top:200px;
+    }
+}
+
+
+
+

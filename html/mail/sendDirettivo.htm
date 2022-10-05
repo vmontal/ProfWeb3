@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    </head>
+    
+    <body>
+
+        <div id="BodyMail">
+
+            <div id="textSection">
+                <br />
+                <table>
+                    <tr>
+                        <td></td>
+                        <td style="text-align:left">
+                            Ai Signori componenti del direttivo dell'Associazione di volontariato<br />
+                            Portofranco Palermo
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <br />
+                <p><i>Invio solo per email</i></p>
+                <br />
+                <p><strong>Oggetto:</strong> {oggettoAss}</p>
+                <br />
+                <p>
+                    I Signori componenti del direttivo dell’Associazione “Portofranco Palermo Associazione di volontariato” sono convocati in prima convocazione presso la sede di {luogoAss} in {indirizzoAss}
+                    il giorno {dataAssPrima}, alle ore 07-30, ed <i>eventualmente in seconda convocazione il giorno <strong>{dataAss}, alle ore {oraAss}</strong></i> sempre nel medesimo luogo,
+                    per esaminare il seguente ordine del giorno:
+                    <br />
+                    {odgAss}
+                    <br />
+                </p>
+            </div>
+
+            <footer>
+                <table>
+                    <tr>
+                        <td>Palermo, {dataInvio}</td>
+                        <td>Il Presidente</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>{presidente}</td>
+                    </tr>
+                </table>
+            </footer>
+            
+        </div>
+
+        <style type="text/css">
+            body {
+                width:90rem;
+                margin-left:auto;
+                margin-right:auto;
+            }
+
+            table{
+                width: 90rem;
+            }
+
+            td {
+                width: 50rem;
+                font-size: 2rem;
+                font-weight: bold;
+                text-align: center;
+            }
+            
+        </style>
+    </body>
+
+</html>
